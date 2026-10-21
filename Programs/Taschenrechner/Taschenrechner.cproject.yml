@@ -176,8 +176,11 @@ project:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
         - file: Inc/display.h
         - file: Inc/main.h
+        - file: Inc/tokenwerk.h
         - file: Inc/scanner.h
+        - file: Inc/speicherwerk.h
         - file: Inc/token.h
+        - file: Inc/testwerk.h
 
 
     # Benutzerdefinierte Programmdateien
@@ -185,7 +188,10 @@ project:
       files:
         - file: Src/display.c
         - file: Src/main.c
+        - file: Src/tokenwerk.c
         - file: Src/scanner.c
+        - file: Src/speicherwerk.c
+        - file: Src/testwerk.c
 
 
   components:
