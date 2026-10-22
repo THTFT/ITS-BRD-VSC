@@ -1,21 +1,30 @@
 /**
- ******************************************************************************
- * @file    tokenwerk.c
- * @author  Cord Harms, Timo Hinrichs, Duc Nguyen
- ******************************************************************************
+ * @file tokenhandler.c
+ * @author Cord Harms, Timo Hinrichs
+ * @date Oktober 2026
+ * @brief ???
  */
-/* Includes ------------------------------------------------------------------*/
 
+#include "alu.h"
+#include "errorhandler.h"
+#include "stack.h"
 #include "token.h"
-#include "tokenwerk.h"
+#include "tokenhandler.h"
 
-void verarbeite_token(T_token token)
+int process_token(T_token token)
 {
     switch(token.tok)
     {
-        case NUMBER:                // auf Stack speichern
+        case NUMBER:
+            handle_error(push(token.val));
+            break;
         case PLUS:
+            handle_error(add());
+            break;
         case MINUS:
+            handle_error(sub());
+            break;
+
         case MULT:
         case DIV:                   // Zahlen holen, Rechnung durchführen, ergebnis auf Stack speichern
         case PRT:                   // letzte Zahl holen, auf Display ausgegben

@@ -1,0 +1,66 @@
+/**
+ * @file stack.h
+ * @author Cord Harms, Timo Hinrichs
+ * @date Oct 2026
+ * @brief ???
+ */
+
+#ifndef STACK_H
+#define STACK_H
+#include "stdbool.h"
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion initialisiert den Stack.
+ *
+ *  @return     void
+ ****************************************************************************************/
+extern void init_stack();
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion legt eine Zahl auf dem Stack ab, falls genügend Platz auf
+ *             dem Stack vorhanden ist.
+ *
+ *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+extern int push(int number);
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion liefert in einer angegebenen Variable den obersten Wert
+ *             des Stacks.
+ *
+ *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+extern int pop(int* result);
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion liefert in zwei angegebenen Variable die beiden obersten
+ *             Werte des Stacks.
+ *
+ *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+extern int pop_twice(int* result1, int* result2);
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion gibt zurück, ob der Stack leer ist.
+ *
+ *  @return    false: Es können noch Elemente auf dem Stack abgelegt werden.
+ *             true: Der Stack ist leer.
+ ****************************************************************************************/
+bool isEmpty();
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion gibt zurück, ob der Stack voll ist.
+ *
+ *  @return    false: Es können noch Elemente auf dem Stack abgelegt werden.
+ *             true: Der Stack ist voll.
+ ****************************************************************************************/
+bool isFull();
+
+#endif /* STACK_H */
+// EOF
