@@ -174,24 +174,26 @@ project:
     - group: Program/User/Inc
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
+        - file: Inc/alu.h
         - file: Inc/display.h
+        - file: Inc/errorhandler.h
         - file: Inc/main.h
-        - file: Inc/tokenwerk.h
         - file: Inc/scanner.h
-        - file: Inc/speicherwerk.h
+        - file: Inc/stack.h
         - file: Inc/token.h
-        - file: Inc/testwerk.h
+        - file: Inc/tokenhandler.h
 
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
       files:
+        - file: Src/alu.c
         - file: Src/display.c
+        - file: Src/errorhandler.c
         - file: Src/main.c
-        - file: Src/tokenwerk.c
         - file: Src/scanner.c
-        - file: Src/speicherwerk.c
-        - file: Src/testwerk.c
+        - file: Src/stack.c
+        - file: Src/tokenhandler.c
 
 
   components:
