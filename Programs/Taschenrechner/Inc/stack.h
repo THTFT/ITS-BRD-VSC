@@ -51,7 +51,7 @@ extern int pop_twice(int* result1, int* result2);
  *  @return    false: Es können noch Elemente auf dem Stack abgelegt werden.
  *             true: Der Stack ist leer.
  ****************************************************************************************/
-bool isEmpty();
+bool is_empty();
 
 /*
  ****************************************************************************************
@@ -60,7 +60,31 @@ bool isEmpty();
  *  @return    false: Es können noch Elemente auf dem Stack abgelegt werden.
  *             true: Der Stack ist voll.
  ****************************************************************************************/
-bool isFull();
+bool is_full();
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion gibt das oberste Element aus.
+ *
+ *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+int print_top();
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion tauscht die obersten zwei Elemente vom Stack.
+ *
+ *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+int swap();
+
+/*
+ ****************************************************************************************
+ *  @brief     Diese Funktion gibt die obersten drei Elemente vom Stack aus.
+ *
+ *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+int print_all();
 
 #endif /* STACK_H */
 // EOF

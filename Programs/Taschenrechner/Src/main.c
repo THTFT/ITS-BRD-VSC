@@ -30,7 +30,6 @@ int main(void)
    // Hauptschleife
    while (1)
    {
-      // testwerk();
       T_token token = next_token();
       process_token(token);
       HAL_Delay(POLL_DELAY);

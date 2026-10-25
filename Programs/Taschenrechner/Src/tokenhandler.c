@@ -24,11 +24,17 @@ int process_token(T_token token)
         case MINUS:
             handle_error(sub());
             break;
-
         case MULT:
+            handle_error(mul());
+            break;
         case DIV:                   // Zahlen holen, Rechnung durchführen, ergebnis auf Stack speichern
+            handle_error(div());
+            break;
         case PRT:                   // letzte Zahl holen, auf Display ausgegben
+            handle_error(print_top());
+            break;
         case SWAP:                  // letzten beiden Zahlen auf Stack tauschen
+        
         case PRT_ALL:               // die drei obersten Zahlen vom Stack auf Display ausgeben
         case CLEAR:                 // Stack leeren
         case DOUBLE:                // letzte Zahl vom Stack verdoppeln

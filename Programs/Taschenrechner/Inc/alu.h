@@ -24,5 +24,21 @@ int add();
  ****************************************************************************************/
 int sub();
 
+/*
+ ****************************************************************************************
+ * @brief : Führt eine Multiplikation des Taschenrechner durch.
+ *
+ * @return  Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+int mul();
+
+/*
+ ****************************************************************************************
+ * @brief : Führt eine Multiplikation des Taschenrechner durch.
+ *
+ * @return  Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ ****************************************************************************************/
+int div();
+
 #endif /* ALU_H */
 // EOF
