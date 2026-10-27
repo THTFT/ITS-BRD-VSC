@@ -142,3 +142,30 @@ int print_all()
 
     return 0;
 }
+
+void clear()
+{
+    stack.stack_pointer = 0;
+    clear_stdout();
+}
+
+int dup()
+{
+    int a;
+    int error_code = pop(&a);
+    if (error_code != 0)
+    {
+        return error_code;
+    }
+    error_code = push(a);
+    if (error_code != 0)
+    {
+        return error_code;
+    }
+    error_code = push(a);
+    if (error_code != 0)
+    {
+        return error_code;
+    }
+    return 0;
+}

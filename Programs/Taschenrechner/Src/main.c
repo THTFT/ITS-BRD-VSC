@@ -25,7 +25,7 @@ int main(void)
    TP_Init(false);                        // Initialisierung des LCD Boards mit Touch
    init_display();                        // Initialisierung des Displays
    init_stack();
-   const int POLL_DELAY = 10000;
+   const int POLL_DELAY = 1;
 
    // Hauptschleife
    while (1)

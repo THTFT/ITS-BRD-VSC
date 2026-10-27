@@ -13,9 +13,9 @@
  ****************************************************************************************
  * @brief : Verarbeitet einen Token.
  *
- * @return  Ein Fehlercode, falls es zu einem Fehler gekommen ist.
+ * @return  void
  ****************************************************************************************/
-int process_token(T_token token);
+void process_token(T_token token);
 
 #endif /* TOKENHANDLER_H */
 // EOF

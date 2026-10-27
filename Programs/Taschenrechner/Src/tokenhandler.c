@@ -11,7 +11,7 @@
 #include "token.h"
 #include "tokenhandler.h"
 
-int process_token(T_token token)
+void process_token(T_token token)
 {
     switch(token.tok)
     {
@@ -34,13 +34,21 @@ int process_token(T_token token)
             handle_error(print_top());
             break;
         case SWAP:                  // letzten beiden Zahlen auf Stack tauschen
-        
+            handle_error(swap());
+            break;
         case PRT_ALL:               // die drei obersten Zahlen vom Stack auf Display ausgeben
+            handle_error(print_all());
         case CLEAR:                 // Stack leeren
+            clear();
+            break;
         case DOUBLE:                // letzte Zahl vom Stack verdoppeln
-        case ENTER:
+            handle_error(dup());
+            break;
         case UNEXPECTED:            // Error-Handler
+            handle_error(UNEXPECTED_ERR);
+            break;
         case OVERFLOW:              // Error-Handler
-        default:
+            handle_error(OVERFLOW);
+            break;
     }
-};
+}

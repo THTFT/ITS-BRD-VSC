@@ -12,6 +12,7 @@
 #define OVERFLOW -2
 #define STACK_OVERFLOW -3
 #define STACK_UNDERFLOW -4
+#define UNEXPECTED_ERR -5
 
 /*
  ****************************************************************************************
