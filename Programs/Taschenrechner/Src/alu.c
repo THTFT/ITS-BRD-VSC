@@ -32,7 +32,7 @@ int add()
     }
 
     if (
-        (a > 0 && b > 0 && INT32_MAX - b) ||
+        (a > 0 && b > 0 && a > INT32_MAX - b) ||
         (a < 0 && b < 0 && a < INT32_MIN - b))
     {
         return OVERFLOW;
@@ -64,7 +64,7 @@ int sub()
 
 int mul()
 {
-    int a = 0, b = 0;
+    int a = 0, b = 0; // In mul
 
     int error_code = pop_twice(&a, &b);
 
@@ -74,10 +74,10 @@ int mul()
     }
 
     if (
-        (a > 0 && b > 0 && betrag(a) > betrag(INT32_MAX) / betrag(b)) ||
-        (a > 0 && b < 0 && betrag(a) > betrag(INT32_MIN) / betrag(b)) ||
-        (a < 0 && b > 0 && betrag(a) > betrag(INT32_MIN) / betrag(b)) ||
-        (a < 0 && b < 0 && betrag(a) > betrag(INT32_MAX) / betrag(b)))
+        ((a > 0 && b > 0) && (a > (INT32_MAX / b))) ||
+        ((a > 0 && b < 0) && (a < (INT32_MIN / b))) ||
+        ((a < 0 && b > 0) && (a < (INT32_MIN / b))) ||
+        ((a < 0 && b < 0) && (a < (INT32_MAX / b))))
     {
         return OVERFLOW;
     }

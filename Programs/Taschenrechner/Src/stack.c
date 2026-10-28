@@ -8,11 +8,8 @@
 #include "display.h"
 #include "errorhandler.h"
 #include "stack.h"
-#include "lcd.h"
 #include "stdbool.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include "token.h"
 
 #define STACK_SIZE 10
 
@@ -131,10 +128,14 @@ int print_all()
     char result[20];
     int_to_string(a, result);
     print_stdout(result);
+    print_stdout("\n");
     int_to_string(b, result);
     print_stdout(result);
+    print_stdout("\n");
     int_to_string(c, result);
     print_stdout(result);
+    print_stdout("\n");
+
 
     push(c);
     push(b);

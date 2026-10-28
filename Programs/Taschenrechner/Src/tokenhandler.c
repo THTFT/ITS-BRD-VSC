@@ -38,6 +38,7 @@ void process_token(T_token token)
             break;
         case PRT_ALL:               // die drei obersten Zahlen vom Stack auf Display ausgeben
             handle_error(print_all());
+            break;
         case CLEAR:                 // Stack leeren
             clear();
             break;
