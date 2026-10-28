@@ -23,4 +23,4 @@
 void handle_error(int err);
 
 #endif /* ERRORHANDLER_H */
-// EOF
+       // EOF

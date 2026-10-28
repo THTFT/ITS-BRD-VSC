@@ -41,4 +41,4 @@ int mul();
 int div();
 
 #endif /* ALU_H */
-// EOF
+       // EOF

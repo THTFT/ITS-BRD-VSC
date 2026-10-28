@@ -8,26 +8,26 @@
 #include "errorhandler.h"
 #include "display.h"
 
-void handle_error(int err)
-{
-    switch(err)
-    {
-        case ZERO_DIV:
-            print_stdout("Es kann nicht durch 0 geteil werden!\n");
-            break;
-        case OVERFLOW:
-            print_stdout("Es gab eine Bereichsüberschreitung bei einer arithmetischen Operation!\n");
-            break;
-        case STACK_OVERFLOW:
-            print_stdout("Es wurde die maximale Kapazität des Stacks erreicht!\n");
-            break;
-        case STACK_UNDERFLOW:
-            print_stdout("Es sind nicht ausreichend Elemente auf dem Stack vorhanden!\n");
-            break;
-        case UNEXPECTED_ERR:
-            print_stdout("Es ist ein unerwarteter Fehler aufgetreren\n");
-            break;
-        default:
-            return;
-    }
+void handle_error(int err) {
+   switch (err) {
+   case ZERO_DIV:
+      print_stdout("Es kann nicht durch 0 geteil werden!\n");
+      break;
+   case OVERFLOW:
+      print_stdout("Es gab eine Bereichsüberschreitung bei einer "
+                   "arithmetischen Operation!\n");
+      break;
+   case STACK_OVERFLOW:
+      print_stdout("Es wurde die maximale Kapazität des Stacks erreicht!\n");
+      break;
+   case STACK_UNDERFLOW:
+      print_stdout(
+          "Es sind nicht ausreichend Elemente auf dem Stack vorhanden!\n");
+      break;
+   case UNEXPECTED_ERR:
+      print_stdout("Es ist ein unerwarteter Fehler aufgetreren\n");
+      break;
+   default:
+      return;
+   }
 }

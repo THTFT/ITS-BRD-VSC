@@ -18,8 +18,8 @@ void init_stack();
 
 /*
  ****************************************************************************************
- *  @brief     Diese Funktion legt eine Zahl auf dem Stack ab, falls genügend Platz auf
- *             dem Stack vorhanden ist.
+ *  @brief     Diese Funktion legt eine Zahl auf dem Stack ab, falls genügend
+ * Platz auf dem Stack vorhanden ist.
  *
  *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/
@@ -27,21 +27,21 @@ int push(int number);
 
 /*
  ****************************************************************************************
- *  @brief     Diese Funktion liefert in einer angegebenen Variable den obersten Wert
- *             des Stacks.
+ *  @brief     Diese Funktion liefert in einer angegebenen Variable den obersten
+ * Wert des Stacks.
  *
  *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/
-int pop(int* result);
+int pop(int *result);
 
 /*
  ****************************************************************************************
- *  @brief     Diese Funktion liefert in zwei angegebenen Variable die beiden obersten
- *             Werte des Stacks.
+ *  @brief     Diese Funktion liefert in zwei angegebenen Variable die beiden
+ * obersten Werte des Stacks.
  *
  *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/
-int pop_twice(int* result1, int* result2);
+int pop_twice(int *result1, int *result2);
 
 /*
  ****************************************************************************************
@@ -102,4 +102,4 @@ void clear();
 int dup();
 
 #endif /* STACK_H */
-// EOF
+       // EOF
