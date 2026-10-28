@@ -2,21 +2,21 @@
  * @file errorhandler.h
  * @author Cord Harms, Timo Hinrichs
  * @date Oktober 2026
- * @brief ???
+ * @brief Header file of display module.
  */
 
 #ifndef ERRORHANDLER_H
 #define ERRORHANDLER_H
 
-#define ZERO_DIV -1
-#define OVERFLOW -2
-#define STACK_OVERFLOW -3
-#define STACK_UNDERFLOW -4
-#define UNEXPECTED_ERR -5
+#define ZERO_DIV (-1)
+#define OVERFLOW (-2)
+#define STACK_OVERFLOW (-3)
+#define STACK_UNDERFLOW (-4)
+#define UNEXPECTED_ERR (-5)
 
 /*
  ****************************************************************************************
- * @brief : Führt ggf. eine Fehlerbehandlung durch.
+ * @brief : Führt eine Fehlerbehandlung durch.
  *
  * @return  void
  ****************************************************************************************/

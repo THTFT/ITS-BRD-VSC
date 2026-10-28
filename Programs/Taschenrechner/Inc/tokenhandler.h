@@ -2,8 +2,7 @@
  * @file tokenhandler.h
  * @author Cord Harms, Timo Hinrichs
  * @date Oktober 2026
- * @brief ???
- */
+ * @brief Header file of display module. */
 
 #ifndef TOKENHANDLER_H
 #define TOKENHANDLER_H

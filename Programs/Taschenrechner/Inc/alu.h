@@ -2,7 +2,7 @@
  * @file alu.hut
  * @author Cord Harms, Timo Hinrichs
  * @date Oktober 2026
- * @brief ???
+ * @brief Header file of display module.
  */
 
 #ifndef ALU_H
@@ -34,7 +34,7 @@ int mul();
 
 /*
  ****************************************************************************************
- * @brief : Führt eine Multiplikation des Taschenrechner durch.
+ * @brief : Führt eine Division des Taschenrechner durch.
  *
  * @return  Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/

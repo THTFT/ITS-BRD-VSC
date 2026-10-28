@@ -2,8 +2,7 @@
  * @file stack.h
  * @author Cord Harms, Timo Hinrichs
  * @date Oct 2026
- * @brief ???
- */
+ * @brief Header file of display module. */
 
 #ifndef STACK_H
 #define STACK_H
@@ -15,7 +14,7 @@
  *
  *  @return     void
  ****************************************************************************************/
-extern void init_stack();
+void init_stack();
 
 /*
  ****************************************************************************************
@@ -24,7 +23,7 @@ extern void init_stack();
  *
  *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/
-extern int push(int number);
+int push(int number);
 
 /*
  ****************************************************************************************
@@ -33,7 +32,7 @@ extern int push(int number);
  *
  *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/
-extern int pop(int* result);
+int pop(int* result);
 
 /*
  ****************************************************************************************
@@ -42,7 +41,7 @@ extern int pop(int* result);
  *
  *  @return    Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/
-extern int pop_twice(int* result1, int* result2);
+int pop_twice(int* result1, int* result2);
 
 /*
  ****************************************************************************************

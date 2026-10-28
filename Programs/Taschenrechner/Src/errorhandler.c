@@ -2,7 +2,7 @@
  * @file errorhandler.c
  * @author Cord Harms, Timo Hinrichs
  * @date Oktober 2026
- * @brief ???
+ * @brief Die Fehlerbehandlung des Taschenrechners.
  */
 
 #include "errorhandler.h"

@@ -2,7 +2,7 @@
  * @file stack.c
  * @author Cord Harms, Timo Hinrichs
  * @date Oktober 2026
- * @brief ???
+ * @brief Das Speicherwerk des Taschenrechners.
  */
 
 #include "display.h"
@@ -11,7 +11,7 @@
 #include "stdbool.h"
 #include <stdio.h>
 
-#define STACK_SIZE 10
+#define STACK_SIZE 20
 
 typedef struct {
    int array[STACK_SIZE];
@@ -36,28 +36,28 @@ int push(int number)
     return 0; 
 }
 
-int pop(int* result)
+int pop(int* result1)
 {
     if(is_empty())
     {
         return STACK_UNDERFLOW;
     }
     stack.stack_pointer -= 1;
-    *result = stack.array[stack.stack_pointer];
+    *result1 = stack.array[stack.stack_pointer];
     return 0;
 }
 
-int pop_twice(int *a, int *b)
+int pop_twice(int *result1, int *result2)
 {
-    int error_code = pop(a);
+    int error_code = pop(result1);
     if(error_code != 0)
     {
         return error_code;
     }
-    error_code = pop(b);
+    error_code = pop(result2);
     if(error_code != 0)
     {
-        push(*a);
+        push(*result1);
         return error_code;
     }
     return 0;
@@ -73,9 +73,9 @@ bool is_full()
     return ((stack.stack_pointer - 1) >= STACK_SIZE);
 }
 
-void int_to_string(int a, char *result)
+void int_to_string(int result1, char *result)
 {
-    snprintf(result,  sizeof(result), "%d", a);
+    snprintf(result,  STACK_SIZE, "%d", result1);
 }
 
 int print_top()
@@ -84,62 +84,64 @@ int print_top()
     {
         return STACK_UNDERFLOW;
     }
-    int a;
-    pop(&a);
-    char top_number[20];
-    int_to_string(a, top_number);
+    int result1;
+    pop(&result1);
+    char top_number[STACK_SIZE];
+    int_to_string(result1, top_number);
     print_stdout(top_number);
-    push(a);
+    push(result1);
     return 0;
 }
 
 int swap()
 {
-    int a, b;
-    int error_code = pop_twice(&a, &b);
+    int result1;
+    int result2;
+    int error_code = pop_twice(&result1, &result2);
     if (error_code != 0)
     {
         return error_code;
     }
-    push(a);
-    push(b);
+    push(result1);
+    push(result2);
     return 0;
 }
 
 int print_all()
 {
-    int a, b, c;
+    int result1;
+    int result2;
+    int result3;
     int error_code;
 
-    error_code = pop_twice(&a, &b);
+    error_code = pop_twice(&result1, &result2);
     if (error_code != 0)
     {
         return error_code;
     }
 
-    error_code = pop(&c);
+    char result[STACK_SIZE];
+    int_to_string(result1, result);
+    print_stdout(result);
+    print_stdout("\n");
+    int_to_string(result2, result);
+    print_stdout("\n");
+    
+    error_code = pop(&result3);
     if (error_code != 0)
     {
-        push(b);
-        push(a);
+        push(result2);
+        push(result1);
         return error_code;
     }
 
-    char result[20];
-    int_to_string(a, result);
-    print_stdout(result);
-    print_stdout("\n");
-    int_to_string(b, result);
-    print_stdout(result);
-    print_stdout("\n");
-    int_to_string(c, result);
+    int_to_string(result3, result);
     print_stdout(result);
     print_stdout("\n");
 
-
-    push(c);
-    push(b);
-    push(a);
+    push(result3);
+    push(result2);
+    push(result1);
 
     return 0;
 }
@@ -152,18 +154,18 @@ void clear()
 
 int dup()
 {
-    int a;
-    int error_code = pop(&a);
+    int result1;
+    int error_code = pop(&result1);
     if (error_code != 0)
     {
         return error_code;
     }
-    error_code = push(a);
+    error_code = push(result1);
     if (error_code != 0)
     {
         return error_code;
     }
-    error_code = push(a);
+    error_code = push(result1);
     if (error_code != 0)
     {
         return error_code;

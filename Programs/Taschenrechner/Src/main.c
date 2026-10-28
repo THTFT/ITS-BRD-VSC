@@ -2,11 +2,9 @@
  * @file main.c
  * @author Cord Harms, Timo Hinrichs
  * @date Oct 2026
- * @brief ???
+ * @brief Der Superloop des Taschenrechner
  */
 
-
-#include "lcd.h"
 #include "display.h"
 #include "init.h"
 #include "LCD_GUI.h"
@@ -15,15 +13,14 @@
 #include "scanner.h"
 #include "stack.h"
 #include "stm32f4xx_hal.h"
-#include <stdio.h>
 
 int main(void)
 {
    // Initialisierungen
-   initITSboard();                         // Initialisierung des ITS Boards
-   GUI_init(DEFAULT_BRIGHTNESS);    // Initialisierung des LCD Boards mit Touch
-   TP_Init(false);                        // Initialisierung des LCD Boards mit Touch
-   init_display();                        // Initialisierung des Displays
+   initITSboard();
+   GUI_init(DEFAULT_BRIGHTNESS);
+   TP_Init(false);
+   init_display();
    init_stack();
    const int POLL_DELAY = 67;
 

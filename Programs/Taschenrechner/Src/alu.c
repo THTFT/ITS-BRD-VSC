@@ -2,29 +2,19 @@
  * @file alu.h
  * @author Cord Harms, Timo Hinrichs
  * @date Oktober 2026
- * @brief ???
+ * @brief Dieses Modul implementiert das Rechenwerk in unserem Taschenrechner.
  */
 
 #include "errorhandler.h"
 #include "stack.h"
 #include <stdint.h>
 
-// https://www.c-plusplus.net/forum/topic/36129/schnellste-m%C3%B6glichkeit-f%C3%BCr-den-betrag-einer-zahl/10
-int betrag(int a)
-{
-    int result = a;
-    if (a < 0)
-    {
-        result = -a;
-    }
-    return result;
-}
-
 int add()
 {
-    int a = 0, b = 0;
+    int result1 = 0;
+    int result2 = 0;
 
-    int error_code = pop_twice(&a, &b);
+    int error_code = pop_twice(&result1, &result2);
 
     if (error_code != 0)
     {
@@ -32,20 +22,21 @@ int add()
     }
 
     if (
-        (a > 0 && b > 0 && a > INT32_MAX - b) ||
-        (a < 0 && b < 0 && a < INT32_MIN - b))
+        (result1 > 0 && result2 > 0 && result1 > INT32_MAX - result2) ||
+        (result1 < 0 && result2 < 0 && result1 < INT32_MIN - result2))
     {
         return OVERFLOW;
     }
 
-    return push((a + b));
+    return push((result1 + result2));
 }
 
 int sub()
 {
-    int a = 0, b = 0;
+    int result1 = 0;
+    int result2 = 0;
 
-    int error_code = pop_twice(&a, &b);
+    int error_code = pop_twice(&result1, &result2);
 
     if (error_code != 0)
     {
@@ -53,20 +44,21 @@ int sub()
     }
 
     if (
-        (a > 0 && b < 0 && a >INT32_MAX + b) ||
-        (a < 0 && b > 0 && a < INT32_MIN + b))
+        (result1 > 0 && result2 < 0 && result1 >INT32_MAX + result2) ||
+        (result1 < 0 && result2 > 0 && result1 < INT32_MIN + result2))
     {
         return OVERFLOW;
     }
 
-    return push((a - b));
+    return push((result1 - result2));
 }
 
 int mul()
 {
-    int a = 0, b = 0; // In mul
+    int result1 = 0;
+    int result2 = 0;
 
-    int error_code = pop_twice(&a, &b);
+    int error_code = pop_twice(&result1, &result2);
 
     if (error_code != 0)
     {
@@ -74,36 +66,37 @@ int mul()
     }
 
     if (
-        ((a > 0 && b > 0) && (a > (INT32_MAX / b))) ||
-        ((a > 0 && b < 0) && (a < (INT32_MIN / b))) ||
-        ((a < 0 && b > 0) && (a < (INT32_MIN / b))) ||
-        ((a < 0 && b < 0) && (a < (INT32_MAX / b))))
+        ((result1 > 0 && result2 > 0) && (result1 > (INT32_MAX / result2))) ||
+        ((result1 > 0 && result2 < 0) && (result1 < (INT32_MIN / result2))) ||
+        ((result1 < 0 && result2 > 0) && (result1 < (INT32_MIN / result2))) ||
+        ((result1 < 0 && result2 < 0) && (result1 < (INT32_MAX / result2))))
     {
         return OVERFLOW;
     }
 
-    return push((a * b));
+    return push((result1 * result2));
 }
 
 int div()
 {
-    int a = 0, b = 0;
+    int result1 = 0;
+    int result2 = 0;
 
-    int error_code = pop_twice(&a, &b);
+    int error_code = pop_twice(&result1, &result2);
 
     if (error_code != 0)
     {
         return error_code;
     }
 
-    if (b == 0)
+    if (result2 == 0)
     {
         return ZERO_DIV;
     }
-    else if (a == INT32_MIN && b == -1)
+    if (result1 == INT32_MIN && result2 == -1)  
     {
         return OVERFLOW;
     }
 
-    return push((a / b));
+    return push((result1 / result2));
 }
