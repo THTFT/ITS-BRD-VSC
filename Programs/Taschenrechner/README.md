@@ -16,7 +16,7 @@
 
 ## Modulkonzept
 
-[Modulkonzept](./gs_1.png)
+![Modulkonzept](./gs_1.png)
 
 Das Modul `tokenhandler` verarbeitet die Tokens. Tokens werden durch Displayeingaben erzeugt. Hier wird er verarbeitet, die jeweiligen Operationen in den anderen Modulen, werden je nach Anweisung angestoßen.
 Hier ist die Schnittstelle für die Fehlerbehandlung der Funktionen. Diese wird auch hier angestoßen.
