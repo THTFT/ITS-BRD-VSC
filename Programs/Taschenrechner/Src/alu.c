@@ -50,7 +50,7 @@ int sub()
         return OVERFLOW;
     }
 
-    return push((result1 - result2));
+    return push((result2 - result1));
 }
 
 int mul()

@@ -70,7 +70,7 @@ bool is_empty()
 
 bool is_full()
 {
-    return ((stack.stack_pointer - 1) >= STACK_SIZE);
+    return ((stack.stack_pointer) >= STACK_SIZE);
 }
 
 void int_to_string(int result1, char *result)
@@ -125,6 +125,7 @@ int print_all()
     print_stdout(result);
     print_stdout("\n");
     int_to_string(result2, result);
+    print_stdout(result);
     print_stdout("\n");
     
     error_code = pop(&result3);

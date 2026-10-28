@@ -19,7 +19,7 @@ void handle_error(int err)
             print_stdout("Es gab eine Bereichsüberschreitung bei einer arithmetischen Operation!\n");
             break;
         case STACK_OVERFLOW:
-            print_stdout("Es wurde versucht auf ein Element außerhalb des Stacks zuzugreifen!\n");
+            print_stdout("Es wurde die maximale Kapazität des Stacks erreicht!\n");
             break;
         case STACK_UNDERFLOW:
             print_stdout("Es sind nicht ausreichend Elemente auf dem Stack vorhanden!\n");
