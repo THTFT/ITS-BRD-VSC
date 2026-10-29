@@ -12,7 +12,8 @@
  ****************************************************************************************
  *  @brief    Diese Funktion initialisiert den Stack.
  *
- *  @source   https://www.delftstack.com/howto/c/how-to-convert-an-integer-to-a-string-in-c/
+ *  @source
+ https://www.delftstack.com/howto/c/how-to-convert-an-integer-to-a-string-in-c/
 
  *  @return   void
  ****************************************************************************************/
@@ -34,7 +35,8 @@ int push(int number);
  *  @brief    Diese Funktion liefert in einer angegebenen Variable den obersten
  *            Wert des Stacks.
  *
- *  @param    result Der Pointer auf die Variable, in welcher das Ergebnis abgelegt werden soll.
+ *  @param    result Der Pointer auf die Variable, in welcher das Ergebnis
+ *abgelegt werden soll.
  *
  *  @return   Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/
@@ -45,10 +47,10 @@ int pop(int *result);
  *  @brief    Diese Funktion liefert in zwei angegebenen Variable die beiden
  *            obersten Werte des Stacks.
  *
- *  @param    result1 Ein Pointer zu einer Variable, in welcher das oberste Element des
- *            Stacks zurückgegeben wird.
- *  @param    result2 Ein Pointer zu einer Variable, in welcher das zweit oberste Element
- *            des Stacks zurückgegeben wird.
+ *  @param    result1 Ein Pointer zu einer Variable, in welcher das oberste
+ *Element des Stacks zurückgegeben wird.
+ *  @param    result2 Ein Pointer zu einer Variable, in welcher das zweit
+ *oberste Element des Stacks zurückgegeben wird.
  *
  *  @return   Ein Fehlercode, falls es zu einem Fehler gekommen ist.
  ****************************************************************************************/

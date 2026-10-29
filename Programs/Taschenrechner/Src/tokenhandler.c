@@ -12,7 +12,7 @@
 #include "token.h"
 
 void process_token(T_token token) {
-   switch (token.tok) { //NOLINT(bugprone-switch-missing-default-case)
+   switch (token.tok) { // NOLINT(bugprone-switch-missing-default-case)
    case NUMBER:
       handle_error(push(token.val));
       break;
