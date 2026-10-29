@@ -106,7 +106,10 @@
                 "${command:cmsis-csolution.getCbuildRunFile}",
                 "--quiet",
                 "--log",
-                "*.cbuild_run,*server=info"
+                {
+                    "value": "*.cbuild_run,*server=info",
+                    "quoting": "strong"
+                }
             ],
             "problemMatcher": []
         },

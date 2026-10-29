@@ -86,7 +86,7 @@ int swap() {
    return 0;
 }
 
-int print_all() {
+int print_all2() {
    int result1;
    int result2;
    int result3;
@@ -109,7 +109,8 @@ int print_all() {
    if (error_code != 0) {
       push(result2);
       push(result1);
-      return error_code;
+      // return error_code;
+      return 0;
    }
 
    int_to_string(result3, result);
@@ -120,6 +121,18 @@ int print_all() {
    push(result2);
    push(result1);
 
+   return 0;
+}
+
+int print_all() {
+   char result[STACK_SIZE];
+
+   for (int i = 0; (i < stack.stack_pointer) && (i < 3); i++) {
+      int_to_string(stack.array[i], result);
+      print_stdout(result);
+      print_stdout("\n");
+   }
+   
    return 0;
 }
 
