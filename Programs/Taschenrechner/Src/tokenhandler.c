@@ -25,28 +25,28 @@ void process_token(T_token token) {
    case MULT:
       handle_error(mul());
       break;
-   case DIV: // Zahlen holen, Rechnung durchführen, ergebnis auf Stack speichern
+   case DIV:
       handle_error(div());
       break;
-   case PRT: // letzte Zahl holen, auf Display ausgegben
+   case PRT:
       handle_error(print_top());
       break;
-   case SWAP: // letzten beiden Zahlen auf Stack tauschen
+   case SWAP:
       handle_error(swap());
       break;
-   case PRT_ALL: // die drei obersten Zahlen vom Stack auf Display ausgeben
+   case PRT_ALL:
       handle_error(print_all());
       break;
-   case CLEAR: // Stack leeren
+   case CLEAR:
       clear();
       break;
-   case DOUBLE: // letzte Zahl vom Stack verdoppeln
+   case DOUBLE:
       handle_error(dup());
       break;
-   case UNEXPECTED: // Error-Handler
+   case UNEXPECTED:
       handle_error(UNEXPECTED_ERR);
       break;
-   case OVERFLOW: // Error-Handler
+   case OVERFLOW:
       handle_error(OVERFLOW);
       break;
    }

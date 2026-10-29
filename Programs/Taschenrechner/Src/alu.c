@@ -21,7 +21,7 @@ int add() {
 
    if ((result1 > 0 && result2 > 0 && result1 > INT32_MAX - result2) ||
        (result1 < 0 && result2 < 0 && result1 < INT32_MIN - result2)) {
-      return OVERFLOW;
+      return OVERFLOW_ERR;
    }
 
    return push((result1 + result2));
@@ -39,7 +39,7 @@ int sub() {
 
    if ((result1 > 0 && result2 < 0 && result1 > INT32_MAX + result2) ||
        (result1 < 0 && result2 > 0 && result1 < INT32_MIN + result2)) {
-      return OVERFLOW;
+      return OVERFLOW_ERR;
    }
 
    return push((result2 - result1));
@@ -59,7 +59,7 @@ int mul() {
        ((result1 > 0 && result2 < 0) && (result1 < (INT32_MIN / result2))) ||
        ((result1 < 0 && result2 > 0) && (result1 < (INT32_MIN / result2))) ||
        ((result1 < 0 && result2 < 0) && (result1 < (INT32_MAX / result2)))) {
-      return OVERFLOW;
+      return OVERFLOW_ERR;
    }
 
    return push((result1 * result2));
@@ -76,10 +76,10 @@ int div() {
    }
 
    if (result2 == 0) {
-      return ZERO_DIV;
+      return ZERO_DIV_ERR;
    }
    if (result1 == INT32_MIN && result2 == -1) {
-      return OVERFLOW;
+      return OVERFLOW_ERR;
    }
 
    return push((result1 / result2));

@@ -10,17 +10,17 @@
 
 void handle_error(int err) {
    switch (err) {
-   case ZERO_DIV:
+   case ZERO_DIV_ERR:
       print_stdout("Es kann nicht durch 0 geteil werden!\n");
       break;
-   case OVERFLOW:
+   case OVERFLOW_ERR:
       print_stdout("Es gab eine Bereichsüberschreitung bei einer "
                    "arithmetischen Operation!\n");
       break;
-   case STACK_OVERFLOW:
+   case STACK_OVERFLOW_ERR:
       print_stdout("Es wurde die maximale Kapazität des Stacks erreicht!\n");
       break;
-   case STACK_UNDERFLOW:
+   case STACK_UNDERFLOW_ERR:
       print_stdout(
           "Es sind nicht ausreichend Elemente auf dem Stack vorhanden!\n");
       break;

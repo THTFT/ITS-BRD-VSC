@@ -8,10 +8,10 @@
 #ifndef ERRORHANDLER_H
 #define ERRORHANDLER_H
 
-#define ZERO_DIV (-1)
-#define OVERFLOW (-2)
-#define STACK_OVERFLOW (-3)
-#define STACK_UNDERFLOW (-4)
+#define ZERO_DIV_ERR (-1)
+#define OVERFLOW_ERR (-2)
+#define STACK_OVERFLOW_ERR (-3)
+#define STACK_UNDERFLOW_ERR (-4)
 #define UNEXPECTED_ERR (-5)
 
 /*
