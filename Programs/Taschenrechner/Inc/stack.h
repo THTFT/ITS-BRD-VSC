@@ -10,9 +10,11 @@
 
 /*
  ****************************************************************************************
- *  @brief     Diese Funktion initialisiert den Stack.
+ *  @brief    Diese Funktion initialisiert den Stack.
  *
- *  @return     void
+ *  @source   https://www.delftstack.com/howto/c/how-to-convert-an-integer-to-a-string-in-c/
+ 
+ *  @return   void
  ****************************************************************************************/
 void init_stack();
 

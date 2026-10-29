@@ -26,3 +26,8 @@ Das Modul `alu` implementiert alle Rechnungen, die der Taschenrechner anbietet. 
 Das Modul `stack`implementiert den Speicher. Informationen und Operationen werden hier zusammen verwaltet.
 
 Das Modul `errorhandler` macht die Fehlerbehandlung von allen Modulen. Die Module reichen über den tokenhandler die jeweiligen Fehlercodes weiter.
+
+---
+
+*Quellen*
+`int_to_string()`: https://www.delftstack.com/howto/c/how-to-convert-an-integer-to-a-string-in-c/
