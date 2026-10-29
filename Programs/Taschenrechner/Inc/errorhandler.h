@@ -16,9 +16,11 @@
 
 /*
  ****************************************************************************************
- * @brief : Führt eine Fehlerbehandlung durch.
+ * @brief     Führt eine Fehlerbehandlung durch.
  *
- * @return  void
+ * @param     err Der Fehlercode, welcher verarbeitet werden soll.
+ *
+ * @return    void
  ****************************************************************************************/
 void handle_error(int err);
 

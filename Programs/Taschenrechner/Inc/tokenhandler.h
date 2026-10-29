@@ -10,9 +10,11 @@
 
 /*
  ****************************************************************************************
- * @brief : Verarbeitet einen Token.
+ * @brief     Verarbeitet einen Token.
  *
- * @return  void
+ * @param     token Der Token welcher verarbeitet werden soll.
+ *
+ * @return    void
  ****************************************************************************************/
 void process_token(T_token token);
 
