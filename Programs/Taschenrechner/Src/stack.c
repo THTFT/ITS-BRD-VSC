@@ -24,7 +24,7 @@ void init_stack(void) { stack.stack_pointer = 0; }
 
 int push(int number) {
    if (is_full()) {
-      return STACK_OVERFLOW;
+      return STACK_OVERFLOW_ERR;
    }
    stack.array[stack.stack_pointer] = number;
    stack.stack_pointer += 1;
@@ -33,7 +33,7 @@ int push(int number) {
 
 int pop(int *result1) {
    if (is_empty()) {
-      return STACK_UNDERFLOW;
+      return STACK_UNDERFLOW_ERR;
    }
    stack.stack_pointer -= 1;
    *result1 = stack.array[stack.stack_pointer];
@@ -55,7 +55,7 @@ int pop_twice(int *result1, int *result2) {
 
 bool is_empty() { return (stack.stack_pointer <= 0); }
 
-bool is_full() { return ((stack.stack_pointer) >= STACK_SIZE); }
+bool is_full() { return (stack.stack_pointer >= STACK_SIZE); }
 
 void int_to_string(int result1, char *result) {
    snprintf(result, STACK_SIZE, "%d", result1);
@@ -63,7 +63,7 @@ void int_to_string(int result1, char *result) {
 
 int print_top() {
    if (is_empty()) {
-      return STACK_UNDERFLOW;
+      return STACK_UNDERFLOW_ERR;
    }
    int result1;
    pop(&result1);
