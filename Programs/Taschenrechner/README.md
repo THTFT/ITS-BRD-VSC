@@ -31,3 +31,5 @@ Das Modul `errorhandler` macht die Fehlerbehandlung von allen Modulen. Die Modul
 
 *Quellen*
 `int_to_string()`: https://www.delftstack.com/howto/c/how-to-convert-an-integer-to-a-string-in-c/
+
+Arithmetische Bereichsüberschreitungen: https://de.wikipedia.org/wiki/Arithmetischer_%C3%9Cberlauf
