@@ -55,10 +55,13 @@ int mul() {
       return error_code;
    }
 
-   if (((result1 > 0 && result2 > 0) && (result1 > (INT32_MAX / result2))) ||
+   if ((((result1 == INT32_MIN) && (result2 == -1)) || ((result1 == -1) && (result2 == INT32_MIN))) ||
+       ((result1 > 0 && result2 > 0) && (result1 > (INT32_MAX / result2))) ||
        ((result1 > 0 && result2 < 0) && (result1 < (INT32_MIN / result2))) ||
        ((result1 < 0 && result2 > 0) && (result1 < (INT32_MIN / result2))) ||
        ((result1 < 0 && result2 < 0) && (result1 < (INT32_MAX / result2)))) {
+      push(result2);
+      push(result1);
       return OVERFLOW_ERR;
    }
 
@@ -72,6 +75,8 @@ int div() {
    int error_code = pop_twice(&result1, &result2);
 
    if (error_code != 0) {
+      push(result2);
+      push(result1);
       return error_code;
    }
 

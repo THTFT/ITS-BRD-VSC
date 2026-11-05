@@ -14,11 +14,10 @@ void handle_error(int err) {
       print_stdout("Es kann nicht durch 0 geteil werden!\n");
       break;
    case OVERFLOW_ERR:
-      print_stdout("Es gab eine Bereichsüberschreitung bei einer "
-                   "arithmetischen Operation!\n");
+      print_stdout("Es gab eine Bereichsueberschreitung bei einer arithmetischen Operation!\n");
       break;
    case STACK_OVERFLOW_ERR:
-      print_stdout("Es wurde die maximale Kapazität des Stacks erreicht!\n");
+      print_stdout("Es wurde die maximale Kapazitaet des Stacks erreicht!\n");
       break;
    case STACK_UNDERFLOW_ERR:
       print_stdout(
