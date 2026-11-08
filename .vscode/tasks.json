@@ -28,17 +28,12 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Taschenrechner"
-            },
-            "windows": {
-                "options": {
-                    "shell": {
-                        "executable": "cmd.exe",
-                        "args": [
-                            "/d",
-                            "/c"
-                        ]
-                    }
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": [
+                        "-c"
+                    ]
                 }
             },
             "args": [
@@ -56,17 +51,12 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Taschenrechner"
-            },
-            "windows": {
-                "options": {
-                    "shell": {
-                        "executable": "cmd.exe",
-                        "args": [
-                            "/d",
-                            "/c"
-                        ]
-                    }
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": [
+                        "-c"
+                    ]
                 }
             },
             "args": [
@@ -83,17 +73,12 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Taschenrechner"
-            },
-            "windows": {
-                "options": {
-                    "shell": {
-                        "executable": "cmd.exe",
-                        "args": [
-                            "/d",
-                            "/c"
-                        ]
-                    }
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": [
+                        "-c"
+                    ]
                 }
             },
             "args": [
@@ -106,10 +91,7 @@
                 "${command:cmsis-csolution.getCbuildRunFile}",
                 "--quiet",
                 "--log",
-                {
-                    "value": "*.cbuild_run,*server=info",
-                    "quoting": "strong"
-                }
+                "*.cbuild_run,*server=info"
             ],
             "problemMatcher": []
         },
@@ -127,17 +109,12 @@
             "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Taschenrechner"
-            },
-            "windows": {
-                "options": {
-                    "shell": {
-                        "executable": "cmd.exe",
-                        "args": [
-                            "/d",
-                            "/c"
-                        ]
-                    }
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": [
+                        "-c"
+                    ]
                 }
             },
             "args": [
