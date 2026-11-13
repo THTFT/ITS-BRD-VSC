@@ -8,6 +8,12 @@
 #ifndef GPIO_H
 #define GPIO_H
 
-void messe_signale(int* kanal_a, int* kanal_b);
+/*
+ ****************************************************************************************
+ * @brief:  This function reads the channel a and b from the GPIO device.
+ *
+ * @return: The values are returned in the arguments of the function.
+ ****************************************************************************************/
+void read_channels(int* channel_a, int* channel_b);
 
 #endif

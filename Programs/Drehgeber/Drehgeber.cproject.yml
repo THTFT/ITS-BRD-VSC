@@ -183,7 +183,7 @@ project:
       files:
         - file: Src/main.c
         - file: Src/fsm.c
-        - file: Inc/gpio.c
+        - file: Src/gpio.c
 
 
   components:
