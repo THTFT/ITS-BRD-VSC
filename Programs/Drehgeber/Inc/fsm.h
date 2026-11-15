@@ -31,6 +31,14 @@ void set_event();
 
 /*
  ****************************************************************************************
+ * @brief:  This function updates the state counter of the fsm.
+ *
+ * @return: void
+ ****************************************************************************************/
+void update_state_counter();
+
+/*
+ ****************************************************************************************
  * @brief:  This function updates the states of the fsm.
  *
  * @return: void

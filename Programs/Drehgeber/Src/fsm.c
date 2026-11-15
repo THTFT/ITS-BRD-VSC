@@ -23,6 +23,7 @@ void set_states(int channel_a, int channel_b) {
                                  {{B}, {C}}}; // NOLINT
     state_old = state_new;
     state_new = (state) { states_lookup[channel_a][channel_b], getTimeStamp() };
+    initTimer(); //Nochmal anschauen      .
 }
 
 void set_event() {
@@ -33,10 +34,19 @@ void set_event() {
     event = event_lookup[state_old.state][state_new.state];
 }
 
+void update_state_counter() {
+    if (event == FORWARDS) {
+        state_counter++;
+    }
+    else if (event == BACKWARDS) {        
+        state_counter--;
+    }
+}
+
 void update_state(void) {
     int channel_a;
     int channel_b;
     read_channels(&channel_a, &channel_b);
     set_states(channel_a, channel_b);
+    update_state_counter();
 }
-
