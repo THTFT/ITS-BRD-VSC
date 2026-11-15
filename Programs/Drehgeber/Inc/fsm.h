@@ -25,9 +25,9 @@ void set_states(int channel_a, int channel_b);
  ****************************************************************************************
  * @brief:  This function sets the current event of the fsm.
  *
- * @return: void
+ * @return: the event direction.
  ****************************************************************************************/
-void set_event();
+int set_event();
 
 /*
  ****************************************************************************************

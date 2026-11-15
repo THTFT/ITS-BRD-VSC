@@ -13,6 +13,8 @@
 #include "lcd.h"
 #include "stm32f429xx.h"
 #include "stm32f4xx_hal.h"
+#include "clock.h"
+#include "timer.h"
 
 int main(void) {
 
@@ -20,11 +22,14 @@ int main(void) {
    initITSboard(); // Initialisierung des ITS Boards
    GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
    TP_Init(false); // Initialisierung des LCD Boards mit Touch
+   initTimer();
    init_fsm();
+   init_clock();
 
    // SUPERLOOP
    const int POLL_DELAY = 10000;
    while (1) {
+      update_clock();
       update_state();
       HAL_Delay(POLL_DELAY);
    }
