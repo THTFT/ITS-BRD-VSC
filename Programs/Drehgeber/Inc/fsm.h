@@ -8,10 +8,10 @@
 #ifndef FSM_H
 #define FSM_H
 
-#define ERROR     (-1)
-#define IDLE        1
-#define FORWARDS    2
-#define BACKWARDS   3
+#define STATE_ERROR   (-1)
+#define IDLE            0
+#define FORWARDS        1
+#define BACKWARDS       2
 
 /*
  ****************************************************************************************
@@ -44,6 +44,9 @@ void update_state_counter();
  * @return: void
  ****************************************************************************************/
 void update_state();
+
+int get_event();
+int get_state_counter();
 
 
 #endif

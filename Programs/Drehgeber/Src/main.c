@@ -7,14 +7,14 @@
  */
 /* Includes ------------------------------------------------------------------*/
 
+#include "angle.h"
+#include "display_fsm.h"
+#include "fsm.h"
+#include "init.h"
 #include "LCD_GUI.h"
 #include "LCD_Touch.h"
-#include "init.h"
-#include "lcd.h"
-#include "stm32f429xx.h"
-#include "stm32f4xx_hal.h"
-#include "clock.h"
 #include "timer.h"
+#include "timer_fsm.h"
 
 int main(void) {
 
@@ -23,14 +23,16 @@ int main(void) {
    GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
    TP_Init(false); // Initialisierung des LCD Boards mit Touch
    initTimer();
-   init_fsm();
-   init_clock();
+   init_display_fsm();
 
    // SUPERLOOP
    const int POLL_DELAY = 10000;
    while (1) {
-      update_clock();
+      update_timer();
       update_state();
+      update_angle();
+      update_display_fsm();
+
       HAL_Delay(POLL_DELAY);
    }
 }

@@ -1,0 +1,58 @@
+/**
+ ******************************************************************************
+ * @file    main.c
+ * @author  Coco
+ * @brief   Kleines Testprogramm fuer neu erstelle Fonts.
+ ******************************************************************************
+ */
+
+ #include "angle.h"
+ #include "lcd.h"
+ #include <stdio.h>
+
+ /*
+Winkel                : XX.X     Grad
+Winkelgeschwindigkeit : XX.X     Grad/s
+*/
+#define CHANGING_SYMBOLS 4
+#define Y_OFFSET_ANGEL 5
+#define Y_OFFSET_ANGEL_VELOCITY 10
+#define X_OFFSET 24
+#define START_TEXT_LENGHT 40
+#define TEXT_ANGEL "Winkel                : XX.X     Grad"
+#define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit : XX.X     Grad/s"
+char string_new[CHANGING_SYMBOLS];
+char string_old[CHANGING_SYMBOLS];
+
+void init_display_fsm() {
+    lcdPrintS(TEXT_ANGEL);
+    lcdGotoXY(0,Y_OFFSET_ANGEL_VELOCITY);
+    lcdPrintS(TEXT_ANGEL_VELOCITY);
+}
+
+void array_copy() {
+    for(int i = 0; i < CHANGING_SYMBOLS; i++) {
+        string_old[i] = string_new[i];
+    }
+}
+
+void update_display_fsm() {
+    array_copy();
+    double angle = get_angle();
+    snprintf(string_new, CHANGING_SYMBOLS, "%.1f", angle);
+    for (int i = 0; i < CHANGING_SYMBOLS; i++) {
+        if(string_new[i] != string_old[i])
+        {
+           lcdGotoXY(X_OFFSET + i, Y_OFFSET_ANGEL);
+           lcdPrintC(string_new[i]);
+        }
+    }
+    for (int i = 0; i < CHANGING_SYMBOLS; i++) {
+        if(string_new[i] != string_old[i])
+        {
+           lcdGotoXY(X_OFFSET + i, Y_OFFSET_ANGEL_VELOCITY);
+           lcdPrintC(string_new[i]);
+        }
+    }
+}
+

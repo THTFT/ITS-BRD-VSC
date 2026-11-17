@@ -174,21 +174,25 @@ project:
     - group: Program/User/Inc
       files:
         - file: ../../ITS_BRD_LIB/Inc/lcd.h
+        - file: ../../ITS_BRD_LIB/Inc/timer.h
+        - file: Inc/angle.h
+        - file: Inc/display_fsm.h
         - file: Inc/errorhandler.h
         - file: Inc/fsm.h
         - file: Inc/gpio.h
-        - file: Inc/timer.h
-
+        - file: Inc/main.h
+        - file: Inc/timer_fsm.h
 
     # Benutzerdefinierte Programmdateien
     - group: Program/User/Src
       files:
         - file: Src/angle.c
+        - file: Src/display_fsm.c
         - file: Src/errorhandler.c
-        - file: Src/timer.c
-        - file: Src/main.c
         - file: Src/fsm.c
         - file: Src/gpio.c
+        - file: Src/main.c
+        - file: Src/timer_fsm.c
 
 
   components:

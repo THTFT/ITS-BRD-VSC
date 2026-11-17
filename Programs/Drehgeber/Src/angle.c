@@ -1,6 +1,6 @@
 #include "angle.h"
 #include "fsm.h"
-#include "clock.h"
+#include "timer_fsm.h"
 #include <stdint.h>
 
 #define DEGREES_PER_EVENT (0.3)
@@ -8,33 +8,30 @@
 #define IDLE_TIMEOUT_TICKS 270000000
 
 uint32_t timer;
+uint64_t event_time_delta;
 
-// 0: werte wurden nicht geupdatet; 1: 300ms sind vergangen
-int update(int state_counter, uint32_t state_counter_timestamp, int event) {
-    timer += state_counter_timestamp;
-    uint64_t event_time_delta = get_timestamp() - state_counter_timestamp;
 
-    if (timer <= DISPLAY_UPDATE_INTERVAL_TICKS) {
+int update() {
+    timer += get_time_diff();
+    if (timer < DISPLAY_UPDATE_INTERVAL_TICKS) {
+        return -1;
+    }
+    if ((timer > IDLE_TIMEOUT_TICKS) && (get_event() == IDLE)) {
+        angle_velocity = 0;
         return 0;
     }
-
-    if ((event == IDLE) && (event_time_delta > IDLE_TIMEOUT_TICKS)) {
-        angle_velocity = 0;
-    }
-    else {
-        update_angle_velocity(event);
-    }
-    update_angle(state_counter);
+    update_angle_velocity();
+    update_angle();
     timer = 0;
-    return 1;
+    return 0;
 }
 
-void update_angle(int state_counter) {
-    angle = DEGREES_PER_EVENT * state_counter;
+void update_angle() {
+    angle += DEGREES_PER_EVENT * get_state_counter();
 }
 
-void update_angle_velocity(int event) {
-    angle_velocity = event / DEGREES_PER_EVENT;
+void update_angle_velocity() {
+    angle_velocity = DEGREES_PER_EVENT / get_time_diff();
 }
 
 double get_angle() {

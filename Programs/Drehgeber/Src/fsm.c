@@ -1,10 +1,8 @@
+#include "errorhandler.h"
 #include "fsm.h"
 #include "gpio.h"
+#include "timer_fsm.h"
 #include <stdint.h>
-#include "timer.h"
-#include "clock.h"
-#include "stm32f4xx_hal_tim.h"
-#include "errorhandler.h"
 
 typedef enum {
     A=0, B=1, C=2, D=3
@@ -73,6 +71,13 @@ void update_state(void) {
     update_state_counter();
 }
 
+int get_event() {
+    return event_new.event;
+}
+
+int get_state_counter() {
+    return state_counter_new.counter;
+}
 
 
 
