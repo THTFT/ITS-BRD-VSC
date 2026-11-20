@@ -6,5 +6,4 @@
  */
 
 void init_display_fsm(); 
-void array_copy();
 void update_display_fsm();

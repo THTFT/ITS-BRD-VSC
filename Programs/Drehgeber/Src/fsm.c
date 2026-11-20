@@ -38,10 +38,10 @@ void set_states(int channel_a, int channel_b) {
 }
 
 int set_event() {
-    int event_lookup[][4] = {{{IDLE}, {FORWARDS}, {ERROR}, {BACKWARDS}}, //NOLINT
-                             {{BACKWARDS}, {IDLE}, {FORWARDS}, {ERROR}}, //NOLINT
-                             {{ERROR}, {BACKWARDS}, {IDLE}, {FORWARDS}}, //NOLINT
-                             {{FORWARDS}, {ERROR}, {BACKWARDS}, {IDLE}}}; //NOLINT
+    int event_lookup[][4] = {{{IDLE}, {FORWARDS}, {STATE_ERROR}, {BACKWARDS}}, //NOLINT
+                             {{BACKWARDS}, {IDLE}, {FORWARDS}, {STATE_ERROR}}, //NOLINT
+                             {{STATE_ERROR}, {BACKWARDS}, {IDLE}, {FORWARDS}}, //NOLINT
+                             {{FORWARDS}, {STATE_ERROR}, {BACKWARDS}, {IDLE}}}; //NOLINT
     event_new = (event) { event_lookup[state_old.state][state_new.state], state_new.timestamp };
     return event_new.event;
 }

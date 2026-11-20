@@ -8,8 +8,10 @@
 #ifndef ANGLE_H
 #define ANGLE_H
 
-double angle;
-double angle_velocity;
+static double angle;
+static double angle_velocity;
+
+int update();
 
 /*
  ****************************************************************************************
