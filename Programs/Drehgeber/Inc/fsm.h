@@ -47,6 +47,7 @@ void update_state();
 
 int get_event();
 int get_state_counter();
+void init_fsm();
 
 
 #endif

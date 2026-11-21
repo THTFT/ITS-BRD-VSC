@@ -14,16 +14,16 @@
 Winkel                : XX.X     Grad
 Winkelgeschwindigkeit : XX.X     Grad/s
 */
-#define CHANGING_SYMBOLS 4
+#define CHANGING_SYMBOLS 5
 #define Y_OFFSET_ANGEL 5
 #define Y_OFFSET_ANGEL_VELOCITY 10
 #define X_OFFSET 24
-#define START_TEXT_LENGHT 40
 #define TWO_DIGIT 10
-#define TEXT_ANGEL "Winkel                : XX.X     Grad"
-#define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit : XX.X     Grad/s"
-char string_new[CHANGING_SYMBOLS];
-char string_old[CHANGING_SYMBOLS];
+#define TEXT_ANGEL "Winkel                : XXX.X     Grad"
+#define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit : XXX.X     Grad/s"
+char string_new[CHANGING_SYMBOLS + 1] = "XXX.X";
+char string_old[CHANGING_SYMBOLS + 1];
+
 
 void init_display_fsm() {
     lcdGotoXY(0,Y_OFFSET_ANGEL);
@@ -66,4 +66,7 @@ void update_display_fsm() {
         }
     }
 }
+
+
+
 

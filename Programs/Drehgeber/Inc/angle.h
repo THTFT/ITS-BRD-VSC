@@ -45,4 +45,6 @@ double get_angle();
  ****************************************************************************************/
 double get_angle_velocity();
 
+void init_angle();
+
 #endif

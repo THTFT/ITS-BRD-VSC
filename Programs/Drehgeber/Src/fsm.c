@@ -60,11 +60,14 @@ void update_state_counter() {
 }
 
 void update_state(void) {
+    // ???????????
+    int channel_a = 0;
+    int channel_b = 0;
+
     if (error_state) {
         return;
     }
-    int channel_a;
-    int channel_b;
+
     read_channels(&channel_a, &channel_b);
     set_states(channel_a, channel_b);
     handle_error(set_event());
@@ -79,6 +82,8 @@ int get_state_counter() {
     return state_counter_new.counter;
 }
 
-
+void init_fsm() {
+    state_new = (state) { A, 0};
+}
 
 // 0,3/event_new.timestamp = Winkelgeschw.

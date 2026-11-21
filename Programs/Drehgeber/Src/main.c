@@ -24,16 +24,18 @@ int main(void) {
    TP_Init(false); // Initialisierung des LCD Boards mit Touch
    initTimer();
    init_display_fsm();
+   init_fsm();
+   init_angle();
 
    // SUPERLOOP
-   const int POLL_DELAY = 10000;
+   // const int POLL_DELAY = 1000;
    while (1) {
       update_timer();
       update_state();
-      update_angle();
+      update();
       update_display_fsm();
 
-      HAL_Delay(POLL_DELAY);
+      // HAL_Delay(POLL_DELAY);
    }
 }
 

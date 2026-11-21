@@ -41,3 +41,7 @@ double get_angle() {
 double get_angle_velocity() {
     return angle_velocity;
 }
+
+void init_angle() {
+    timer = 0;
+}
