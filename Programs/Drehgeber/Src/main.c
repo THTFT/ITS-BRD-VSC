@@ -9,6 +9,7 @@
 
 #include "angle.h"
 #include "display_fsm.h"
+#include "errorhandler.h"
 #include "fsm.h"
 #include "init.h"
 #include "LCD_GUI.h"
@@ -30,9 +31,14 @@ int main(void) {
    // SUPERLOOP
    // const int POLL_DELAY = 1000;
    while (1) {
+
+      if (error_state) {
+         return 1;
+      }
+
       update_timer();
-      update_state();
-      update();
+      handle_error(update_state());
+      handle_error(update());
       update_display_fsm();
 
       // HAL_Delay(POLL_DELAY);

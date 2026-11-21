@@ -43,7 +43,7 @@ void update_state_counter();
  *
  * @return: void
  ****************************************************************************************/
-void update_state();
+int update_state();
 
 int get_event();
 int get_state_counter();

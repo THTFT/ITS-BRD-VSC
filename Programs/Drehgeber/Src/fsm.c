@@ -1,4 +1,3 @@
-#include "errorhandler.h"
 #include "fsm.h"
 #include "gpio.h"
 #include "timer_fsm.h"
@@ -59,19 +58,15 @@ void update_state_counter() {
     }
 }
 
-void update_state(void) {
-    // ???????????
+int update_state(void) {
     int channel_a = 0;
     int channel_b = 0;
 
-    if (error_state) {
-        return;
-    }
-
     read_channels(&channel_a, &channel_b);
     set_states(channel_a, channel_b);
-    handle_error(set_event());
+    set_event();
     update_state_counter();
+    return event_new.event;
 }
 
 int get_event() {
