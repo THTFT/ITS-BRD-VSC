@@ -8,6 +8,7 @@
 #ifndef FSM_H
 #define FSM_H
 
+#include <stdint.h>
 #define STATE_ERROR   (-1)
 #define IDLE            0
 #define FORWARDS        1
@@ -47,6 +48,8 @@ int update_state();
 
 int get_event();
 int get_state_counter();
+uint64_t get_event_duration();
+int get_state_counter_diff();
 void init_fsm();
 
 

@@ -32,14 +32,14 @@ int update() {
 int update_angle() {
     int error_code = 0;
     angle = DEGREES_PER_EVENT * get_state_counter();
-    if ((angle > MEASURING_RANGE) || (angle < (-MEASURING_RANGE))) {
+    if ((angle > MEASURING_RANGE) || (angle < (-MEASURING_RANGE))) {    
         error_code = 1;
     }
     return error_code;
 }
 
 void update_angle_velocity() {
-    angle_velocity = DEGREES_PER_EVENT / ((double) get_time_diff() / ONE_SECOND);
+    angle_velocity = (get_state_counter_diff() * DEGREES_PER_EVENT) / ((double) get_event_duration() / ONE_SECOND);
 }
 
 double get_angle() {

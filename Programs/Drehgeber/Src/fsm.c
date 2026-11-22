@@ -23,8 +23,8 @@ typedef struct {
 } state_counter;
 
 event event_new;
-state_counter state_counter_new = (state_counter) { 0, 0};
-// state_counter state_counter_old;
+state_counter state_counter_new = (state_counter) { 0, 0 };
+state_counter state_counter_old;
 
 static state state_new;
 static state state_old;
@@ -47,12 +47,13 @@ int set_event() {
 
 void update_state_counter() {
     int direction = event_new.event;
-    // state_counter_old = state_counter_new;
     if (direction == FORWARDS) {
+        state_counter_old = state_counter_new;
         state_counter_new.timestamp = event_new.timestamp;
         ++state_counter_new.counter;
     }
     else if (direction == BACKWARDS) {
+        state_counter_old = state_counter_new;
         state_counter_new.timestamp = event_new.timestamp;      
         --state_counter_new.counter;
     }
@@ -75,6 +76,14 @@ int get_event() {
 
 int get_state_counter() {
     return state_counter_new.counter;
+}
+
+uint64_t get_event_duration() {
+    return state_counter_new.timestamp - state_counter_old.timestamp;
+}
+
+int get_state_counter_diff() {
+    return state_counter_new.counter - state_counter_old.counter;
 }
 
 void init_fsm() {
