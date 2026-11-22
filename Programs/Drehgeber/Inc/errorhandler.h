@@ -20,4 +20,6 @@ extern bool error_state;
  ****************************************************************************************/
 void handle_error(int event);
 
+bool get_errorstate();
+
 #endif

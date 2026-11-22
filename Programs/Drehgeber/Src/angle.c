@@ -4,18 +4,21 @@
 #include <stdint.h>
 
 #define DEGREES_PER_EVENT (0.3)
+#define ONE_SECOND 90000000
 #define DISPLAY_UPDATE_INTERVAL_TICKS 27000000
 #define IDLE_TIMEOUT_TICKS 270000000
 #define MEASURING_RANGE 999
 
 uint32_t timer;
 uint64_t event_time_delta;
-
+//1mi    90
+//1ms    90 000
+//300ms  27 000 000
 
 int update() {
     timer += get_time_diff();
     if (timer < DISPLAY_UPDATE_INTERVAL_TICKS) {
-        return -1;
+        return 0;
     }
     if ((timer > IDLE_TIMEOUT_TICKS) && (get_event() == IDLE)) {
         angle_velocity = 0;
@@ -36,7 +39,7 @@ int update_angle() {
 }
 
 void update_angle_velocity() {
-    angle_velocity = DEGREES_PER_EVENT / get_time_diff();
+    angle_velocity = DEGREES_PER_EVENT / ((double) get_time_diff() / ONE_SECOND);
 }
 
 double get_angle() {

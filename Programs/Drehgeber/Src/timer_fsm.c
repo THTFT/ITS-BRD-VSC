@@ -6,10 +6,14 @@ uint64_t timer_fsm;
 uint32_t time_new;
 uint32_t time_old;
 
+void init_timer_fsm() {
+    timer_fsm = 0;
+}
+
 void update_timer() {
     time_old = time_new;
     time_new = getTimeStamp();
-    timer_fsm += time_new - time_old;
+    timer_fsm += (time_new - time_old);
 }
 
 uint64_t get_timestamp() {

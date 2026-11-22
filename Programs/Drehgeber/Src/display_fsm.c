@@ -22,8 +22,10 @@ Winkelgeschwindigkeit : XX.X     Grad/s
 #define TWO_DIGIT 10
 #define TEXT_ANGEL "Winkel                : VXXX.X     Grad"
 #define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit : VXXX.X     Grad/s"
-char string_new[CHANGING_SYMBOLS + 1] = "VXXX.X";
-char string_old[CHANGING_SYMBOLS + 1];
+char string_new_angle[CHANGING_SYMBOLS + 1] = "VXXX.X";
+char string_old_angle[CHANGING_SYMBOLS + 1];
+char string_new_angle_velocity[CHANGING_SYMBOLS + 1] = "VXXX.X";
+char string_old_angle_velocity[CHANGING_SYMBOLS + 1];
 
 
 void init_display_fsm() {
@@ -33,38 +35,38 @@ void init_display_fsm() {
     lcdPrintS(TEXT_ANGEL_VELOCITY);
 }
 
-void array_copy() {
+static void array_copy(char* string_old, char* string_new) { //NOLINT
     for(int i = 0; i < CHANGING_SYMBOLS; ++i) {
         string_old[i] = string_new[i];
     }
 }
 
-void array_shift_left() {
+static void array_shift_left(char* string) {
     for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
-        string_new[i] = string_new[i+1];
+        string[i] = string[i+1];
     }
 }
 
-void array_shift_right() {
+static void array_shift_right(char* string) {
     for (int i = CHANGING_SYMBOLS-1; i > 0; --i) {
-        string_new[i] = string_new[i-1];
+        string[i] = string[i-1];
     }
 }
 
-char align_sign() {
+static char align_sign(char* string) {
     char sign = ' ';
-    if (string_new[0] == '-') {
+    if (string[0] == '-') {
         sign = '-';
-        string_new[0] = '0';
-        array_shift_left();
+        string[0] = '0';
+        array_shift_left(string);
     }
     return sign;
 }
-
-int count_shifts() {
+//funktioniert nur mit arrays die so lang sind wie CHANING_SYMBOLS.
+static int count_shifts(char* string) { //NOLINT
     int counter = 0;
     for (int i = (CHANGING_SYMBOLS-1); i >= 0; --i) {
-        if (string_new[i] == '.') {
+        if (string[i] == '.') {
             break;
         }
         counter++;
@@ -72,53 +74,52 @@ int count_shifts() {
     return counter-1;
 }
 
-void array_align() {
+void array_align(char* string) {
     char sign = ' ';
     int shift_counter = 0;
 
     // align sign
-    sign = align_sign();
+    sign = align_sign(string);
 
     // count shifts
-    shift_counter = count_shifts();
+    shift_counter = count_shifts(string);
 
     // shift array
     while (shift_counter > 0) {
-        array_shift_right();
+        array_shift_right(string);
         --shift_counter;
     }
 
-    string_new[0] = sign;
+    string_new_angle[0] = sign;
 }
 
-void update_display() {
+void update_display(char* string_old, char* string_new, int y_offset) { //NOLINT
     for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
         if(string_new[i] != string_old[i])
         {
-           lcdGotoXY(X_OFFSET + i, Y_OFFSET_ANGEL);
-           lcdPrintC(string_new[i]);
-        }
-    }
-    for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
-        if(string_new[i] != string_old[i])
-        {
-           lcdGotoXY(X_OFFSET + i, Y_OFFSET_ANGEL_VELOCITY);
+           lcdGotoXY(X_OFFSET + i, y_offset);
            lcdPrintC(string_new[i]);
         }
     }
 }
 
-void init_string_new() {
+static void init_string(char* string) {
     for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
-        string_new[i] = 0;
+        string[i] = 0;
     }
 }
 
 void update_display_fsm() {
-    array_copy();
+    array_copy(string_old_angle, string_new_angle);
+    array_copy(string_old_angle_velocity, string_new_angle_velocity);
     double angle = get_angle();
-    init_string_new();
-    snprintf(string_new, CHANGING_SYMBOLS, "%.1f", angle);
-    array_align();
-    update_display();
+    double angle_velocity = get_angle_velocity();
+    init_string(string_new_angle);
+    init_string(string_new_angle_velocity);
+    snprintf(string_new_angle, CHANGING_SYMBOLS, "%.1f", angle);
+    snprintf(string_new_angle_velocity, CHANGING_SYMBOLS, "%.1f", angle_velocity);
+    array_align(string_new_angle);
+    array_align(string_new_angle_velocity);
+    update_display(string_old_angle,string_new_angle,Y_OFFSET_ANGEL);
+    update_display(string_old_angle_velocity,string_new_angle_velocity,Y_OFFSET_ANGEL_VELOCITY);
 }

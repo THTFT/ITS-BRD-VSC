@@ -23,7 +23,7 @@ typedef struct {
 } state_counter;
 
 event event_new;
-state_counter state_counter_new;
+state_counter state_counter_new = (state_counter) { 0, 0};
 // state_counter state_counter_old;
 
 static state state_new;
@@ -50,11 +50,11 @@ void update_state_counter() {
     // state_counter_old = state_counter_new;
     if (direction == FORWARDS) {
         state_counter_new.timestamp = event_new.timestamp;
-        state_counter_new.counter++;
+        ++state_counter_new.counter;
     }
     else if (direction == BACKWARDS) {
         state_counter_new.timestamp = event_new.timestamp;      
-        state_counter_new.counter--;
+        --state_counter_new.counter;
     }
 }
 
@@ -78,7 +78,7 @@ int get_state_counter() {
 }
 
 void init_fsm() {
-    state_new = (state) { A, 0};
+    state_new = (state) { A, 0 };
 }
 
 // 0,3/event_new.timestamp = Winkelgeschw.
