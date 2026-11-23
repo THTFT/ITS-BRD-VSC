@@ -33,7 +33,7 @@ int update_angle() {
     int error_code = 0;
     angle = DEGREES_PER_EVENT * get_state_counter();
     if ((angle > MEASURING_RANGE) || (angle < (-MEASURING_RANGE))) {    
-        error_code = 1;
+        error_code = STATE_ERROR;
     }
     return error_code;
 }

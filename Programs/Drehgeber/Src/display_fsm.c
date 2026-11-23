@@ -89,14 +89,13 @@ void array_align(char* string) {
         array_shift_right(string);
         --shift_counter;
     }
-
-    string_new_angle[0] = sign;
+    
+    string[0] = sign;
 }
 
 void update_display(char* string_old, char* string_new, int y_offset) { //NOLINT
     for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
-        if(string_new[i] != string_old[i])
-        {
+        if(string_new[i] != string_old[i]) {
            lcdGotoXY(X_OFFSET + i, y_offset);
            lcdPrintC(string_new[i]);
         }

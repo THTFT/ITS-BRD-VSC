@@ -24,7 +24,6 @@ int main(void) {
    GUI_init(DEFAULT_BRIGHTNESS); // Initialisierung des LCD Boards mit Touch
    TP_Init(false); // Initialisierung des LCD Boards mit Touch
    initTimer();
-   HAL_Delay(3000);
    init_timer_fsm();
    init_display_fsm();
    init_fsm();
