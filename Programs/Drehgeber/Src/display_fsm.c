@@ -82,7 +82,7 @@ void array_align(char* string) {
     int shift_counter = 0;
 
     // align sign
-    // sign = align_sign(string);
+     sign = align_sign(string);
 
     // count shifts
     shift_counter = count_shifts(string);

@@ -28,11 +28,11 @@ void set_leds_event(int counter) {
 }
 
 void set_led_forwards() {
-    GPIOE->ODR = ODR_MASK_PIN_6;
+    GPIOE->ODR = ODR_MASK_PIN_7;
 }
 
 void set_led_backwards() {
-    GPIOE->ODR = ODR_MASK_PIN_7;
+    GPIOE->ODR = ODR_MASK_PIN_6;
 }
 
 void set_leds_direction(int direction) {
