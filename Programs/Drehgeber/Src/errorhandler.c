@@ -1,14 +1,15 @@
 #include "errorhandler.h"
 #include "fsm.h"
+#include "gpio.h"
 
-bool error_state = false;
+void error_state() {
+    set_led_error();
+    while(1) {}
+}
 
 void handle_error(int event) {
     if (event != STATE_ERROR) {
         return;
     }
-    error_state = true;
-}
-bool get_errorstate() {
-    return error_state;
+    error_state();
 }

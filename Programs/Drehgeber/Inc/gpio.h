@@ -16,4 +16,7 @@
  ****************************************************************************************/
 void read_channels(int* channel_a, int* channel_b);
 
+void set_led_error();
+void set_leds();
+
 #endif

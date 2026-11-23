@@ -11,6 +11,7 @@
 #include "display_fsm.h"
 #include "errorhandler.h"
 #include "fsm.h"
+#include "gpio.h"
 #include "init.h"
 #include "LCD_GUI.h"
 #include "LCD_Touch.h"
@@ -32,17 +33,11 @@ int main(void) {
    // SUPERLOOP
    // const int POLL_DELAY = 1000;
    while (1) {
-
-      if (get_errorstate()) {
-         
-         return 1;
-      }
-
       update_timer();
       handle_error(update_state());
       handle_error(update());
       update_display_fsm();
-
+      set_leds();
       // HAL_Delay(POLL_DELAY);
    }
 }

@@ -10,8 +10,6 @@
 
 #include <stdbool.h>
 
-extern bool error_state;
-
 /*
  ****************************************************************************************
  * @brief:  This function handles an error of the fsm event.

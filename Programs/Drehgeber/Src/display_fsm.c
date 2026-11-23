@@ -11,20 +11,21 @@
 #include <complex.h>
  #include <stdio.h>
 
+
  /*
 Winkel                : XX.X     Grad
 Winkelgeschwindigkeit : XX.X     Grad/s
 */
-#define CHANGING_SYMBOLS 6
+#define CHANGING_SYMBOLS 7
 #define Y_OFFSET_ANGEL 5
 #define Y_OFFSET_ANGEL_VELOCITY 10
 #define X_OFFSET 24
 #define TWO_DIGIT 10
-#define TEXT_ANGEL "Winkel                : VXXX.X     Grad"
-#define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit : VXXX.X     Grad/s"
-char string_new_angle[CHANGING_SYMBOLS + 1] = "VXXX.X";
+#define TEXT_ANGEL "Winkel                : VXXXX.X     Grad"
+#define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit : VXXXX.X     Grad/s"
+char string_new_angle[CHANGING_SYMBOLS + 1] = "VXXXX.X";
 char string_old_angle[CHANGING_SYMBOLS + 1];
-char string_new_angle_velocity[CHANGING_SYMBOLS + 1] = "VXXX.X";
+char string_new_angle_velocity[CHANGING_SYMBOLS + 1] = "VXXXX.X";
 char string_old_angle_velocity[CHANGING_SYMBOLS + 1];
 
 
@@ -50,6 +51,7 @@ static void array_shift_left(char* string) {
 static void array_shift_right(char* string) {
     for (int i = CHANGING_SYMBOLS-1; i > 0; --i) {
         string[i] = string[i-1];
+
     }
 }
 
@@ -57,11 +59,12 @@ static char align_sign(char* string) {
     char sign = ' ';
     if (string[0] == '-') {
         sign = '-';
-        string[0] = '0';
+        // string[0] = '0';
         array_shift_left(string);
     }
     return sign;
 }
+
 //funktioniert nur mit arrays die so lang sind wie CHANING_SYMBOLS.
 static int count_shifts(char* string) { //NOLINT
     int counter = 0;
@@ -79,15 +82,18 @@ void array_align(char* string) {
     int shift_counter = 0;
 
     // align sign
-    sign = align_sign(string);
+    // sign = align_sign(string);
 
     // count shifts
     shift_counter = count_shifts(string);
 
     // shift array
+    int count_doku = 0;
     while (shift_counter > 0) {
         array_shift_right(string);
+        string[count_doku] = '0';
         --shift_counter;
+        ++count_doku;
     }
     
     string[0] = sign;
@@ -108,6 +114,8 @@ static void init_string(char* string) {
     }
 }
 
+//  0  1 2 3 4  5 6
+// [V][][][][][.][]
 void update_display_fsm() {
     array_copy(string_old_angle, string_new_angle);
     array_copy(string_old_angle_velocity, string_new_angle_velocity);
@@ -115,8 +123,8 @@ void update_display_fsm() {
     double angle_velocity = get_angle_velocity();
     init_string(string_new_angle);
     init_string(string_new_angle_velocity);
-    snprintf(string_new_angle, CHANGING_SYMBOLS, "%.1f", angle);
-    snprintf(string_new_angle_velocity, CHANGING_SYMBOLS, "%.1f", angle_velocity);
+    snprintf(string_new_angle, CHANGING_SYMBOLS+1, "%.1f", angle);
+    snprintf(string_new_angle_velocity, CHANGING_SYMBOLS+1, "%.1f", angle_velocity);
     array_align(string_new_angle);
     array_align(string_new_angle_velocity);
     update_display(string_old_angle,string_new_angle,Y_OFFSET_ANGEL);

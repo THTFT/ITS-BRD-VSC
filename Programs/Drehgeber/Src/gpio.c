@@ -1,12 +1,54 @@
 #include "gpio.h"
+#include "Legacy/stm32_hal_legacy.h"
+#include "fsm.h"
 #include "stm32f429xx.h"
 #include <stdint.h>
+#include <stdlib.h>
+
 
 #define IDR_MASK_PIN_0  0x1U
 #define IDR_MASK_PIN_1 (0x1U << 1)
+#define ODR_MASK_PIN_5 (0x1U << 5)
+#define ODR_MASK_PIN_6 (0x1U << 6)
+#define ODR_MASK_PIN_7 (0x1U << 7)
 
 void read_channels(int* channel_a, int* channel_b) {
     uint32_t idr = GPIOF->IDR;
     *channel_a = idr & IDR_MASK_PIN_0; //NOLINT
     *channel_b = ((idr & IDR_MASK_PIN_1) >> 1); //NOLINT
+}
+
+void set_leds_event(int counter) {
+    counter = abs(counter);
+    GPIOD->ODR = 0;
+    GPIOD->ODR = (uint32_t) counter;
+}
+
+void set_led_forwards() {
+    GPIOE->ODR = ODR_MASK_PIN_6;
+}
+
+void set_led_backwards() {
+    GPIOE->ODR = ODR_MASK_PIN_7;
+}
+
+void set_leds_direction(int direction) {
+    GPIOE->ODR = 0;
+    if (direction == FORWARDS) {
+        set_led_forwards();
+    }
+    else if (direction == BACKWARDS) {
+        set_led_backwards();
+    }
+}
+
+void set_led_error() {
+    GPIOE->ODR = ODR_MASK_PIN_5;
+}
+
+void set_leds() {
+    int counter = get_state_counter();
+    int direction = get_event();
+    set_leds_event(counter);
+    set_leds_direction(direction);
 }
