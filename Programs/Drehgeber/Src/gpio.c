@@ -12,6 +12,9 @@
 #define ODR_MASK_PIN_6 (0x1U << 6)
 #define ODR_MASK_PIN_7 (0x1U << 7)
 
+int buffer_counter = 0;
+int buffer_direction = 0;
+
 void read_channels(int* channel_a, int* channel_b) {
     uint32_t idr = GPIOF->IDR;
     *channel_a = idr & IDR_MASK_PIN_0; //NOLINT
@@ -33,7 +36,6 @@ void set_led_backwards() {
 }
 
 void set_leds_direction(int direction) {
-    GPIOE->ODR = 0;
     if (direction == FORWARDS) {
         set_led_forwards();
     }
@@ -48,7 +50,13 @@ void set_led_error() {
 
 void set_leds() {
     int counter = get_state_counter();
+    if(counter != buffer_counter){
+        set_leds_event(counter);
+        buffer_counter = counter;
+    }
     int direction = get_event();
-    set_leds_event(counter);
-    set_leds_direction(direction);
+    if(direction != buffer_direction) {
+        set_leds_direction(direction);
+        buffer_direction = direction;  
+    }
 }

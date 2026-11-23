@@ -29,10 +29,9 @@ state_counter state_counter_old;
 static state state_new;
 static state state_old;
 
-void set_states(int channel_a, int channel_b) {
+void set_state(int channel_a, int channel_b) {
     states states_lookup[][2] = {{{A}, {D}}, // NOLINT
                                  {{B}, {C}}}; // NOLINT
-    state_old = state_new;
     state_new = (state) { states_lookup[channel_a][channel_b], get_timestamp() };
 }
 
@@ -64,7 +63,8 @@ int update_state(void) {
     int channel_b = 0;
 
     read_channels(&channel_a, &channel_b);
-    set_states(channel_a, channel_b);
+    state_old = state_new;
+    set_state(channel_a, channel_b);
     set_event();
     update_state_counter();
     return event_new.event;
@@ -86,8 +86,14 @@ int get_state_counter_diff() {
     return state_counter_new.counter - state_counter_old.counter;
 }
 
+//void init_fsm() {
+//    int channel_a;
+//    int channel_b;
+//    read_channels(&channel_a,&channel_b);
+//    set_state(channel_a,channel_b);
+//}
 void init_fsm() {
-    state_new = (state) { A, 0 };
+    state_new = (state) {A,0};
 }
 
 // 0,3/event_new.timestamp = Winkelgeschw.
