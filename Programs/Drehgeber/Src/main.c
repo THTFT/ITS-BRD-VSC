@@ -33,24 +33,26 @@ int main(void) {
    // SUPERLOOP
    // const int POLL_DELAY = 1000;
    while (1) {
+      
       if(read_s6()) {
          initTimer();
          init_timer_fsm();
          init_display_fsm();
          init_fsm();
          init_angle();
+         clear_leds();
       }
       if (get_event() == STATE_ERROR) {
          set_led_error();
          continue;
       }
       update_timer();
-      handle_error(update_state());
-      handle_error(update());
+      update_state();
+      update();
       update_display_fsm();
       set_leds();
-      // HAL_Delay(POLL_DELAY);
+      
    }
 }
-
+//29 mikro
 // EOF

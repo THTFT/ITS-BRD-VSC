@@ -11,6 +11,7 @@
 #define MASK_PIN_5 (0x1U << 5)
 #define MASK_PIN_6 (0x1U << 6)
 #define MASK_PIN_7 (0x1U << 7)
+#define MASK_BSRR_CLEAR (0xFFU << 16)
 
 int buffer_counter = 0;
 int buffer_direction = 0;
@@ -64,4 +65,10 @@ void set_leds() {
 uint32_t read_s6() {
     uint32_t idr = GPIOF->IDR;
     return ((~idr & MASK_PIN_6) >> 6); //NOLINT
+}
+
+void clear_leds() {
+    GPIOD->BSRR = MASK_BSRR_CLEAR;
+    GPIOE->BSRR = MASK_BSRR_CLEAR;
+
 }
