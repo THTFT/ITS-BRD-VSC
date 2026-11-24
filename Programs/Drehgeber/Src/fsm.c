@@ -86,14 +86,12 @@ int get_state_counter_diff() {
     return state_counter_new.counter - state_counter_old.counter;
 }
 
-//void init_fsm() {
-//    int channel_a;
-//    int channel_b;
-//    read_channels(&channel_a,&channel_b);
-//    set_state(channel_a,channel_b);
-//}
 void init_fsm() {
-    state_new = (state) {A,0};
+    int channel_a;
+    int channel_b;
+    read_channels(&channel_a,&channel_b);
+    set_state(channel_a,channel_b);
+    event_new = (event) {IDLE, 0 };
 }
 
 // 0,3/event_new.timestamp = Winkelgeschw.

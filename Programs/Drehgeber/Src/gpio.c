@@ -6,19 +6,19 @@
 #include <stdlib.h>
 
 
-#define IDR_MASK_PIN_0  0x1U
-#define IDR_MASK_PIN_1 (0x1U << 1)
-#define ODR_MASK_PIN_5 (0x1U << 5)
-#define ODR_MASK_PIN_6 (0x1U << 6)
-#define ODR_MASK_PIN_7 (0x1U << 7)
+#define MASK_PIN_0  0x1U
+#define MASK_PIN_1 (0x1U << 1)
+#define MASK_PIN_5 (0x1U << 5)
+#define MASK_PIN_6 (0x1U << 6)
+#define MASK_PIN_7 (0x1U << 7)
 
 int buffer_counter = 0;
 int buffer_direction = 0;
 
 void read_channels(int* channel_a, int* channel_b) {
     uint32_t idr = GPIOF->IDR;
-    *channel_a = idr & IDR_MASK_PIN_0; //NOLINT
-    *channel_b = ((idr & IDR_MASK_PIN_1) >> 1); //NOLINT
+    *channel_a = idr & MASK_PIN_0; //NOLINT
+    *channel_b = ((idr & MASK_PIN_1) >> 1); //NOLINT
 }
 
 void set_leds_event(int counter) {
@@ -28,11 +28,11 @@ void set_leds_event(int counter) {
 }
 
 void set_led_forwards() {
-    GPIOE->ODR = ODR_MASK_PIN_7;
+    GPIOE->ODR = MASK_PIN_7;
 }
 
 void set_led_backwards() {
-    GPIOE->ODR = ODR_MASK_PIN_6;
+    GPIOE->ODR = MASK_PIN_6;
 }
 
 void set_leds_direction(int direction) {
@@ -45,7 +45,7 @@ void set_leds_direction(int direction) {
 }
 
 void set_led_error() {
-    GPIOE->ODR = ODR_MASK_PIN_5;
+    GPIOE->ODR = MASK_PIN_5;
 }
 
 void set_leds() {
@@ -59,4 +59,9 @@ void set_leds() {
         set_leds_direction(direction);
         buffer_direction = direction;  
     }
+}
+
+uint32_t read_s6() {
+    uint32_t idr = GPIOF->IDR;
+    return ((~idr & MASK_PIN_6) >> 6); //NOLINT
 }

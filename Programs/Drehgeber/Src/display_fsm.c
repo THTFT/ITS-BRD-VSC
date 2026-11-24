@@ -8,6 +8,7 @@
 
  #include "angle.h"
  #include "lcd.h"
+#include "stm32f429xx.h"
 #include <complex.h>
  #include <stdio.h>
 
@@ -108,6 +109,16 @@ void update_display(char* string_old, char* string_new, int y_offset) { //NOLINT
     }
 }
 
+void update_display_shit() {
+    GPIOE->ODR =1;
+    lcdGotoXY(X_OFFSET, Y_OFFSET_ANGEL);
+    lcdPrintS(string_new_angle);
+    lcdGotoXY(X_OFFSET, Y_OFFSET_ANGEL_VELOCITY);
+    lcdPrintS(string_new_angle_velocity);
+    GPIOE->ODR = 0;
+}
+
+
 static void init_string(char* string) {
     for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
         string[i] = 0;
@@ -127,6 +138,7 @@ void update_display_fsm() {
     snprintf(string_new_angle_velocity, CHANGING_SYMBOLS+1, "%.1f", angle_velocity);
     array_align(string_new_angle);
     array_align(string_new_angle_velocity);
-    update_display(string_old_angle,string_new_angle,Y_OFFSET_ANGEL);
-    update_display(string_old_angle_velocity,string_new_angle_velocity,Y_OFFSET_ANGEL_VELOCITY);
+    //update_display(string_old_angle,string_new_angle,Y_OFFSET_ANGEL);
+    //update_display(string_old_angle_velocity,string_new_angle_velocity,Y_OFFSET_ANGEL_VELOCITY);
+    update_display_shit();
 }
