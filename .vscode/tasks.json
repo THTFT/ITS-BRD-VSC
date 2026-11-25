@@ -25,10 +25,16 @@
         },
         {
             "label": "CMSIS Erase",
-            "type": "cmsis-csolution.pyocd",
+            "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Drehgeber"
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": [
+                        "-c"
+                    ]
+                }
             },
             "args": [
                 "erase",
@@ -42,10 +48,16 @@
         },
         {
             "label": "CMSIS Load",
-            "type": "cmsis-csolution.pyocd",
+            "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Drehgeber"
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": [
+                        "-c"
+                    ]
+                }
             },
             "args": [
                 "load",
@@ -58,10 +70,16 @@
         },
         {
             "label": "CMSIS Run",
-            "type": "cmsis-csolution.pyocd",
+            "type": "shell",
             "command": "pyocd",
             "options": {
-                "cwd": "${workspaceFolder}/Programs/Drehgeber"
+                "cwd": "${workspaceFolder}/Programs/Drehgeber",
+                "shell": {
+                    "executable": "/bin/bash",
+                    "args": [
+                        "-c"
+                    ]
+                }
             },
             "args": [
                 "gdbserver",
@@ -93,17 +111,14 @@
             "options": {
                 "cwd": "${workspaceFolder}/Programs/Drehgeber",
                 "shell": {
-                    "executable": "cmd.exe",
+                    "executable": "/bin/bash",
                     "args": [
-                        "/d",
-                        "/c"
+                        "-c"
                     ]
                 }
             },
             "args": [
-                "info",
-                "--probe",
-                "stlink:",
+                "list",
                 "--cbuild-run",
                 "${command:cmsis-csolution.getCbuildRunFile}"
             ],

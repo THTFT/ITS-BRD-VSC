@@ -33,8 +33,7 @@
                     "--log",
                     "*.cbuild_run,*server=info"
                 ],
-                "port": "3333",
-                "serverDisconnectTimeout": 3000
+                "port": "3333"
             },
             "cmsis": {
                 "cbuildRunFile": "${command:cmsis-csolution.getCbuildRunFile}",
