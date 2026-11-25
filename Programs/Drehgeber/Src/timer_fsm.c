@@ -2,9 +2,9 @@
 #include "timer_fsm.h"
 #include <stdint.h>
 
-uint64_t timer_fsm;
-uint32_t time_new;
-uint32_t time_old;
+static uint64_t timer_fsm;
+static uint32_t time_new;
+static uint32_t time_old;
 
 void init_timer_fsm() {
     timer_fsm = 0;

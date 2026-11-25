@@ -16,7 +16,8 @@
  ****************************************************************************************/
 #include <stdint.h>
 void read_channels(int* channel_a, int* channel_b);
-
+void set_leds_event(int counter);
+void set_leds_direction(int direction);
 void set_led_error();
 void set_leds();
 uint32_t read_s6();

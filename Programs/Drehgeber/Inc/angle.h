@@ -11,23 +11,8 @@
 static double angle;
 static double angle_velocity;
 
+
 int update();
-
-/*
- ****************************************************************************************
- * @brief:  This function calculates the angle relative to the start.
- *
- * @return: void
- ****************************************************************************************/
-int update_angle();
-
-/*
- ****************************************************************************************
- * @brief:  This function calculates the angle velocity if the state has changed.
- *
- * @return: void
- ****************************************************************************************/
-void update_angle_velocity();
 
 /*
  ****************************************************************************************

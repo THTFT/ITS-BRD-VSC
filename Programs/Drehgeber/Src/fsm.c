@@ -3,39 +3,19 @@
 #include "timer_fsm.h"
 #include <stdint.h>
 
-typedef enum {
-    A=0, B=1, C=2, D=3
-} states;
-
-typedef struct {
-    states state;
-    uint64_t timestamp;
-} state;
-
-typedef struct {
-    int event;
-    uint64_t timestamp;
-} event;
-
-typedef struct {
-    int counter;
-    uint64_t timestamp;
-} state_counter;
-
-event event_new;
-state_counter state_counter_new = (state_counter) { 0, 0 };
-state_counter state_counter_old;
-
+static event event_new;
+static state_counter state_counter_new;
+static state_counter state_counter_old;
 static state state_new;
 static state state_old;
 
-void set_state(int channel_a, int channel_b) {
+static void set_state(int channel_a, int channel_b) {
     states states_lookup[][2] = {{{A}, {D}}, // NOLINT
                                  {{B}, {C}}}; // NOLINT
     state_new = (state) { states_lookup[channel_a][channel_b], get_timestamp() };
 }
 
-int set_event() {
+static int set_event() {
     int event_lookup[][4] = {{{IDLE}, {FORWARDS}, {STATE_ERROR}, {BACKWARDS}}, //NOLINT
                              {{BACKWARDS}, {IDLE}, {FORWARDS}, {STATE_ERROR}}, //NOLINT
                              {{STATE_ERROR}, {BACKWARDS}, {IDLE}, {FORWARDS}}, //NOLINT
@@ -44,7 +24,7 @@ int set_event() {
     return event_new.event;
 }
 
-void update_state_counter() {
+static void update_state_counter() {
     int direction = event_new.event;
     if (direction == FORWARDS) {
         state_counter_old = state_counter_new;
@@ -58,7 +38,7 @@ void update_state_counter() {
     }
 }
 
-int update_state(void) {
+int update_state() {
     int channel_a = 0;
     int channel_b = 0;
 
@@ -87,6 +67,7 @@ int get_state_counter_diff() {
 }
 
 void init_fsm() {
+    state_counter_new = (state_counter) { 0, 0 };
     int channel_a;
     int channel_b;
     read_channels(&channel_a,&channel_b);

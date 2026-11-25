@@ -7,6 +7,3 @@
 
 void init_display_fsm(); 
 void update_display_fsm();
-void array_shift_right();
-void array_shift_left();
-void update_display();

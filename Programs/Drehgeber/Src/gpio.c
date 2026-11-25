@@ -13,8 +13,8 @@
 #define MASK_PIN_7 (0x1U << 7)
 #define MASK_BSRR_CLEAR (0xFFU << 16)
 
-int buffer_counter = 0;
-int buffer_direction = 0;
+static int buffer_counter = 0;
+static int buffer_direction = 0;
 
 void read_channels(int* channel_a, int* channel_b) {
     uint32_t idr = GPIOF->IDR;
@@ -28,11 +28,11 @@ void set_leds_event(int counter) {
     GPIOD->ODR = (uint32_t) counter;
 }
 
-void set_led_forwards() {
+static void set_led_forwards() {
     GPIOE->ODR = MASK_PIN_7;
 }
 
-void set_led_backwards() {
+static void set_led_backwards() {
     GPIOE->ODR = MASK_PIN_6;
 }
 

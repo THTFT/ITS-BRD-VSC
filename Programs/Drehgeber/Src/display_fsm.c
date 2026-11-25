@@ -24,12 +24,11 @@ Winkelgeschwindigkeit : XX.X     Grad/s
 #define TWO_DIGIT 10
 #define TEXT_ANGEL "Winkel                :  0000.0     Grad"
 #define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit :  0000.0     Grad/s"
-char string_new_angle[CHANGING_SYMBOLS + 1] = " 0000.0";
-char string_old_angle[CHANGING_SYMBOLS + 1];
-char string_new_angle_velocity[CHANGING_SYMBOLS + 1] = " 0000.0";
-char string_old_angle_velocity[CHANGING_SYMBOLS + 1];
 
-
+static char string_new_angle[CHANGING_SYMBOLS + 1] = " 0000.0";
+static char string_old_angle[CHANGING_SYMBOLS + 1];
+static char string_new_angle_velocity[CHANGING_SYMBOLS + 1] = " 0000.0";
+static char string_old_angle_velocity[CHANGING_SYMBOLS + 1];
 
 void init_display_fsm() {
     lcdGotoXY(0,Y_OFFSET_ANGEL);
@@ -79,7 +78,7 @@ static int count_shifts(char* string) { //NOLINT
     return counter-1;
 }
 
-void array_align(char* string) {
+static void array_align(char* string) {
     char sign = ' ';
     int shift_counter = 0;
 
@@ -101,7 +100,7 @@ void array_align(char* string) {
     string[0] = sign;
 }
 
-void update_display(char* string_old, char* string_new, int y_offset) { //NOLINT
+static void update_display(char* string_old, char* string_new, int y_offset) { //NOLINT
     for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
         if(string_new[i] != string_old[i]) {
            lcdGotoXY(X_OFFSET + i, y_offset);
@@ -110,15 +109,13 @@ void update_display(char* string_old, char* string_new, int y_offset) { //NOLINT
     }
 }
 
-
 static void init_string(char* string) {
     for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
         string[i] = 0;
     }
 }
 
-//  0  1 2 3 4  5 6
-// [V][][][][][.][]
+// Die Auswertung ergaben eine Durchlaufzeit von: 2500ns
 void update_display_fsm() {
     array_copy(string_old_angle, string_new_angle);
     array_copy(string_old_angle_velocity, string_new_angle_velocity);
@@ -133,4 +130,4 @@ void update_display_fsm() {
     update_display(string_old_angle,string_new_angle,Y_OFFSET_ANGEL);
     update_display(string_old_angle_velocity,string_new_angle_velocity,Y_OFFSET_ANGEL_VELOCITY);
 }
-//2500 ns
+

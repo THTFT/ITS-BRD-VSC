@@ -14,29 +14,24 @@
 #define FORWARDS        1
 #define BACKWARDS       2
 
-/*
- ****************************************************************************************
- * @brief:  This function sets the state of the fsm.
- *
- * @return: void
- ****************************************************************************************/
-void set_states(int channel_a, int channel_b);
+typedef enum {
+    A=0, B=1, C=2, D=3,
+} states;
 
-/*
- ****************************************************************************************
- * @brief:  This function sets the current event of the fsm.
- *
- * @return: the event direction.
- ****************************************************************************************/
-int set_event();
+typedef struct {
+    states state;
+    uint64_t timestamp;
+} state;
 
-/*
- ****************************************************************************************
- * @brief:  This function updates the state counter of the fsm.
- *
- * @return: void
- ****************************************************************************************/
-void update_state_counter();
+typedef struct {
+    int event;
+    uint64_t timestamp;
+} event;
+
+typedef struct {
+    int counter;
+    uint64_t timestamp;
+} state_counter;
 
 /*
  ****************************************************************************************
