@@ -11,7 +11,6 @@
 static double angle;
 static double angle_velocity;
 
-
 int update();
 
 /*

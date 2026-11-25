@@ -5,5 +5,5 @@
  * @brief Header file of fsm module.
  */
 
-void init_display_fsm(); 
+void init_display_fsm();
 void update_display_fsm();

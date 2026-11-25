@@ -9,28 +9,31 @@
 #define FSM_H
 
 #include <stdint.h>
-#define STATE_ERROR   (-1)
-#define IDLE            0
-#define FORWARDS        1
-#define BACKWARDS       2
+#define STATE_ERROR (-1)
+#define IDLE 0
+#define FORWARDS 1
+#define BACKWARDS 2
 
 typedef enum {
-    A=0, B=1, C=2, D=3,
+   A = 0,
+   B = 1,
+   C = 2,
+   D = 3,
 } states;
 
 typedef struct {
-    states state;
-    uint64_t timestamp;
+   states state;
+   uint64_t timestamp;
 } state;
 
 typedef struct {
-    int event;
-    uint64_t timestamp;
+   int event;
+   uint64_t timestamp;
 } event;
 
 typedef struct {
-    int counter;
-    uint64_t timestamp;
+   int counter;
+   uint64_t timestamp;
 } state_counter;
 
 /*
@@ -46,6 +49,5 @@ int get_state_counter();
 uint64_t get_event_duration();
 int get_state_counter_diff();
 void init_fsm();
-
 
 #endif
