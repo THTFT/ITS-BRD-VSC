@@ -8,7 +8,6 @@
 
 #include "angle.h"
 #include "lcd.h"
-#include "stm32f429xx.h"
 #include <complex.h>
 #include <stdio.h>
 
@@ -98,7 +97,7 @@ static void array_align(char *string) {
    string[0] = sign;
 }
 
-static void update_display(char *string_old, char *string_new,
+static void update_display(char *string_old, char *string_new, // NOLINT
                            int y_offset) { // NOLINT
    for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
       if (string_new[i] != string_old[i]) {
