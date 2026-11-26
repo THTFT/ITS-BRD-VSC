@@ -8,7 +8,10 @@
 
 #include "angle.h"
 #include "lcd.h"
+#include "main.h"
+#include "timer_fsm.h"
 #include <complex.h>
+#include <stdint.h>
 #include <stdio.h>
 
 /*
@@ -22,11 +25,13 @@ Winkelgeschwindigkeit : XX.X     Grad/s
 #define TWO_DIGIT 10
 #define TEXT_ANGEL "Winkel                :  0000.0     Grad"
 #define TEXT_ANGEL_VELOCITY "Winkelgeschwindigkeit :  0000.0     Grad/s"
+#define DISPLAY_UPDATE_INTERVAL_TICKS 27000000
 
 static char string_new_angle[CHANGING_SYMBOLS + 1] = " 0000.0";
 static char string_old_angle[CHANGING_SYMBOLS + 1];
 static char string_new_angle_velocity[CHANGING_SYMBOLS + 1] = " 0000.0";
 static char string_old_angle_velocity[CHANGING_SYMBOLS + 1];
+static uint32_t timer;
 
 void init_display_fsm() {
    lcdGotoXY(0, Y_OFFSET_ANGEL);
@@ -97,10 +102,26 @@ static void array_align(char *string) {
    string[0] = sign;
 }
 
+static int update_display2(char *string_old, char *string_new, // NOLINT
+                           int y_offset) { // NOLINT
+      if (string_new[superloop_counter] != string_old[superloop_counter]) {
+         lcdGotoXY(X_OFFSET + superloop_counter, y_offset);
+         lcdPrintC(string_new[superloop_counter]);
+         if(superloop_counter == CHANGING_SYMBOLS)
+         {
+            superloop_counter = 0;
+            timer = 0;
+         }
+      }
+   
+   return 0;
+}
+
 static int update_display(char *string_old, char *string_new, // NOLINT
                            int y_offset) { // NOLINT
    for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
       if (string_new[i] != string_old[i]) {
+         string_old[i] = string_new[i];
          lcdGotoXY(X_OFFSET + i, y_offset);
          lcdPrintC(string_new[i]);
          return 1;
@@ -117,27 +138,30 @@ static void init_string(char *string) {
 
 // Die Auswertung ergaben eine Durchlaufzeit von: 30 mikros.
 void update_display_fsm() {
-//   GPIOE->ODR = 1;
-   array_copy(string_old_angle, string_new_angle);
-   array_copy(string_old_angle_velocity, string_new_angle_velocity);
-   double angle = get_angle();
-   double angle_velocity = get_angle_velocity();
-   init_string(string_new_angle);
-   init_string(string_new_angle_velocity);
-   snprintf(string_new_angle, CHANGING_SYMBOLS + 1, "%.1f", angle);
-   snprintf(string_new_angle_velocity, CHANGING_SYMBOLS + 1, "%.1f",
-            angle_velocity);
-   array_align(string_new_angle);
-   array_align(string_new_angle_velocity);
+   timer += get_time_diff();
+   double angle;
+   double angle_velocity;
 
-   // nur alle 300ms ausführen
-   int updated = update_display(string_old_angle, string_new_angle,
-                  Y_OFFSET_ANGEL);
-   // Wenn es eine Veränderung gegeben hat, hör auf.
-   if (updated) {
-      return;
+   if (timer < DISPLAY_UPDATE_INTERVAL_TICKS) {
+      angle = get_angle();
+      angle_velocity = get_angle_velocity();
+      array_copy(string_old_angle, string_new_angle);
+      array_copy(string_old_angle_velocity, string_new_angle_velocity);
+      init_string(string_new_angle);
+      init_string(string_new_angle_velocity);
+      snprintf(string_new_angle, CHANGING_SYMBOLS + 1, "%.1f", angle);
+      snprintf(string_new_angle_velocity, CHANGING_SYMBOLS + 1, "%.1f",
+            angle_velocity);
+      array_align(string_new_angle);
+      array_align(string_new_angle_velocity);
    }
-   update_display(string_old_angle_velocity, string_new_angle_velocity,
+   else {
+      int updated = update_display(string_old_angle, string_new_angle,
+                  Y_OFFSET_ANGEL);
+      if (updated) {
+        return;
+      }
+      update_display(string_old_angle_velocity, string_new_angle_velocity,
                   Y_OFFSET_ANGEL_VELOCITY);
-//   GPIOE->ODR = 0;
+   }
 }

@@ -14,6 +14,7 @@
 #include "fsm.h"
 #include "gpio.h"
 #include "init.h"
+#include "main.h"
 #include "timer.h"
 #include "timer_fsm.h"
 
@@ -69,8 +70,6 @@ int main(void) {
       // Ausgabe - treiben der Aktoren
       update_display_fsm();
       set_leds();
-      
-      // GPIOE->ODR = 0;
    }
 }
 // 76,5 mikro

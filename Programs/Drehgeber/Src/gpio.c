@@ -24,8 +24,8 @@ void read_channels(int *channel_a, int *channel_b) {
 
 static void set_leds_event(int counter) {
    counter = abs(counter);
-   GPIOD->ODR = 0;
-   GPIOD->ODR = (uint32_t)counter;
+   GPIOD->BSRR = MASK_BSRR_CLEAR;
+   GPIOD->BSRR = (uint32_t)counter;
 }
 
 static void set_led_forwards() { GPIOE->BSRR = MASK_PIN_7; }
