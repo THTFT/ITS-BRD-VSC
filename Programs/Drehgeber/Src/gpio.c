@@ -11,6 +11,7 @@
 #define MASK_PIN_6 (0x1U << 6)
 #define MASK_PIN_7 (0x1U << 7)
 #define MASK_BSRR_CLEAR (0xFFU << 16)
+#define MASK_BSRR_CLEAR_LEDS ((MASK_PIN_5 | MASK_PIN_6 | MASK_PIN_7) << 16)
 
 static int buffer_counter = 0;
 static int buffer_direction = 0;
@@ -27,9 +28,9 @@ static void set_leds_event(int counter) {
    GPIOD->ODR = (uint32_t)counter;
 }
 
-static void set_led_forwards() { GPIOE->ODR = MASK_PIN_7; }
+static void set_led_forwards() { GPIOE->BSRR = MASK_PIN_7; }
 
-static void set_led_backwards() { GPIOE->ODR = MASK_PIN_6; }
+static void set_led_backwards() { GPIOE->BSRR = MASK_PIN_6; }
 
 static void set_leds_direction(int direction) {
    if (direction == FORWARDS) {
@@ -39,7 +40,7 @@ static void set_leds_direction(int direction) {
    }
 }
 
-void set_led_error() { GPIOE->ODR = MASK_PIN_5; }
+void set_led_error() { GPIOE->BSRR = MASK_PIN_5; }
 
 void set_leds() {
    int counter = get_state_counter();
@@ -61,5 +62,5 @@ uint32_t read_s6() {
 
 void clear_leds() {
    GPIOD->BSRR = MASK_BSRR_CLEAR;
-   GPIOE->BSRR = MASK_BSRR_CLEAR;
+   GPIOE->BSRR = MASK_BSRR_CLEAR_LEDS;
 }

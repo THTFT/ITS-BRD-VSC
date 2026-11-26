@@ -27,9 +27,9 @@ static void update_angle_velocity() {
 
 int update() {
    timer += get_time_diff();
-   if (timer < DISPLAY_UPDATE_INTERVAL_TICKS) {
-      return 0;
-   }
+   // if (timer < DISPLAY_UPDATE_INTERVAL_TICKS) {
+   //    return 0;
+   // }
    if ((timer > IDLE_TIMEOUT_TICKS) && (get_event() == IDLE)) {
       angle_velocity = 0;
       return 0;

@@ -129,6 +129,8 @@ void update_display_fsm() {
             angle_velocity);
    array_align(string_new_angle);
    array_align(string_new_angle_velocity);
+
+   // nur alle 300ms ausführen
    int updated = update_display(string_old_angle, string_new_angle,
                   Y_OFFSET_ANGEL);
    // Wenn es eine Veränderung gegeben hat, hör auf.
