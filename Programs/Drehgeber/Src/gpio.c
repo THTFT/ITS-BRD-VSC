@@ -21,7 +21,7 @@ void read_channels(int *channel_a, int *channel_b) {
    *channel_b = ((idr & MASK_PIN_1) >> 1); // NOLINT
 }
 
-void set_leds_event(int counter) {
+static void set_leds_event(int counter) {
    counter = abs(counter);
    GPIOD->ODR = 0;
    GPIOD->ODR = (uint32_t)counter;
@@ -31,7 +31,7 @@ static void set_led_forwards() { GPIOE->ODR = MASK_PIN_7; }
 
 static void set_led_backwards() { GPIOE->ODR = MASK_PIN_6; }
 
-void set_leds_direction(int direction) {
+static void set_leds_direction(int direction) {
    if (direction == FORWARDS) {
       set_led_forwards();
    } else if (direction == BACKWARDS) {
