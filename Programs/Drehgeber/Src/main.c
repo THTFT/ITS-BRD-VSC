@@ -36,7 +36,7 @@ int main(void) {
    // SUPERLOOP
    // const int POLL_DELAY = 1000;
    while (1) {
-
+//    GPIOE->ODR = 1;
       if (read_s6()) {
          init();
          clear_leds();
@@ -50,7 +50,8 @@ int main(void) {
       update();
       update_display_fsm();
       set_leds();
+//    GPIOE->ODR = 0;
    }
 }
-// 29 mikro
+// 76,5 mikro
 //  EOF

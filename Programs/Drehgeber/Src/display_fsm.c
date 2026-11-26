@@ -114,8 +114,9 @@ static void init_string(char *string) {
    }
 }
 
-// Die Auswertung ergaben eine Durchlaufzeit von: 2500ns
+// Die Auswertung ergaben eine Durchlaufzeit von: 30 mikros.
 void update_display_fsm() {
+//   GPIOE->ODR = 1;
    array_copy(string_old_angle, string_new_angle);
    array_copy(string_old_angle_velocity, string_new_angle_velocity);
    double angle = get_angle();
@@ -130,4 +131,5 @@ void update_display_fsm() {
    update_display(string_old_angle, string_new_angle, Y_OFFSET_ANGEL);
    update_display(string_old_angle_velocity, string_new_angle_velocity,
                   Y_OFFSET_ANGEL_VELOCITY);
+//   GPIOE->ODR = 0;
 }
