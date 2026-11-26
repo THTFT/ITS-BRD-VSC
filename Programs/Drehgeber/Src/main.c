@@ -37,6 +37,8 @@ int main(void) {
    // const int POLL_DELAY = 1000;
    while (1) {
       // GPIOE->ODR = 1;
+
+      // Eingabe - einlesen der Sensoren
       if (read_s6()) {
          init();
          clear_leds();
@@ -45,11 +47,20 @@ int main(void) {
          set_led_error();
          continue;
       }
+      read_sensors();
+
+      // Update des Zustandes
       update_timer();
       update_state();
+
+      // Berechnung der neuen Werte fuer die Aktoren
+      calc_values();
       update();
+
+      // Ausgabe - treiben der Aktoren
       update_display_fsm();
       set_leds();
+      
       // GPIOE->ODR = 0;
    }
 }

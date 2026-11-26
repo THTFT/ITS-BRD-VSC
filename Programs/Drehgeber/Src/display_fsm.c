@@ -97,14 +97,16 @@ static void array_align(char *string) {
    string[0] = sign;
 }
 
-static void update_display(char *string_old, char *string_new, // NOLINT
+static int update_display(char *string_old, char *string_new, // NOLINT
                            int y_offset) { // NOLINT
    for (int i = 0; i < CHANGING_SYMBOLS; ++i) {
       if (string_new[i] != string_old[i]) {
          lcdGotoXY(X_OFFSET + i, y_offset);
          lcdPrintC(string_new[i]);
+         return 1;
       }
    }
+   return 0;
 }
 
 static void init_string(char *string) {
@@ -127,7 +129,12 @@ void update_display_fsm() {
             angle_velocity);
    array_align(string_new_angle);
    array_align(string_new_angle_velocity);
-   update_display(string_old_angle, string_new_angle, Y_OFFSET_ANGEL);
+   int updated = update_display(string_old_angle, string_new_angle,
+                  Y_OFFSET_ANGEL);
+   // Wenn es eine Veränderung gegeben hat, hör auf.
+   if (updated) {
+      return;
+   }
    update_display(string_old_angle_velocity, string_new_angle_velocity,
                   Y_OFFSET_ANGEL_VELOCITY);
 //   GPIOE->ODR = 0;
