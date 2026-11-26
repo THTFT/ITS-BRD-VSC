@@ -17,6 +17,7 @@
 #include "timer.h"
 #include "timer_fsm.h"
 
+#define BSRR_MASK_CLEAR_8 (1 << 16)
 static void init() {
    initTimer();
    init_timer_fsm();
@@ -36,7 +37,15 @@ int main(void) {
    // SUPERLOOP
    // const int POLL_DELAY = 1000;
    while (1) {
-      // GPIOE->ODR = 1;
+      
+      uint16_t idr2 = GPIOE->IDR;
+      int result= idr2 & 0x1;
+      if(result != 1) {
+         GPIOE->BSRR = 1;
+      }
+      else {
+         GPIOE->BSRR = BSRR_MASK_CLEAR_8;
+      }
 
       // Eingabe - einlesen der Sensoren
       if (read_s6()) {
