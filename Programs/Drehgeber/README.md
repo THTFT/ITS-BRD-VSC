@@ -30,28 +30,31 @@
 
 ## Drehgeber
 
-| Ereignis          | Erwartungswert                                                                                                                 | Ergebnis | Durchgeführt am | Softwareversion | Hardware | Protokollant |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- | --------------- | --------------- | -------- | ------------ |
-| Stillstand        | Angle: 0 Grad<br>Angle Velocity: 0 Grad/s<br><br>Status-LEDs: *aus*<br>State-Counter-LED: *aus*                                |          |                 |                 |          |              |
-| Vorwärts langsam  | Angle: *positiv* Grad<br>Angle Velocity: *positiv* Grad/s<br><br>Status-LEDs: D23<br>State-Counter-LEDs: *zählt hoch*          |          |                 |                 |          |              |
-| Rückwärts langsam | Angle: *negativ* Grad<br>Angle Velocity: *negativ* Grad/s<br><br>Status-LEDs: D22<br>State-Counter-LEDs: *zählt hoch*          |          |                 |                 |          |              |
-| Fehler            | Angle: *eingefroren* Grad<br>Angle Velocity: *eingefroren* Grad/s<br><br>Status-LEDs: D21<br>State-Counter-LEDs: *eingefroren* |          |                 |                 |          |              |
-| Reset (S6)        | Angle: "0000.0 Grad"<br>Angle Velocity: 0000.0 Grad/s<br><br>Status-LEDs: *aus*<br>State-Counter-LEDs: *aus*                   |          |                 |                 |          |              |
+| Ereignis          | Erwartungswert                                                                                                                 | Ergebnis | Durchgeführt am | Softwareversion | Hardware           | Protokollant  |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------ | -------- | --------------- | --------------- | ------------------ | ------------- |
+| Stillstand        | Angle: 0 Grad<br>Angle Velocity: 0 Grad/s<br><br>Status-LEDs: *aus*<br>State-Counter-LED: *aus*                                | *passt*  | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| Vorwärts langsam  | Angle: *positiv* Grad<br>Angle Velocity: *positiv* Grad/s<br><br>Status-LEDs: D23<br>State-Counter-LEDs: *zählt hoch*          | *passt*  | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| Rückwärts langsam | Angle: *negativ* Grad<br>Angle Velocity: *negativ* Grad/s<br><br>Status-LEDs: D22<br>State-Counter-LEDs: *zählt hoch*          | *passt*  | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| Fehler            | Angle: *eingefroren* Grad<br>Angle Velocity: *eingefroren* Grad/s<br><br>Status-LEDs: D21<br>State-Counter-LEDs: *eingefroren* | *passt*  | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| Reset (S6)        | Angle: "0000.0 Grad"<br>Angle Velocity: 0000.0 Grad/s<br><br>Status-LEDs: *aus*<br>State-Counter-LEDs: *aus*                   | *passt*  | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
 
 ## Pico Rechteckgenerator
 
+
 **360 Grad & 20 Grad/s**
 
-| Zeit in s | Erwartungswert Angle | Erwartungswert Angle Velocity | Erwartungswert LEDs       | Ergebnis Angle | Ergebnis Angle Velocity | Ergebnis LEDs | Durchgeführt am | Softwareversion | Hardware | Protokollant |
-| --------- | -------------------- | ----------------------------- | ------------------------- | -------------- | ----------------------- | ------------- | --------------- | --------------- | -------- | ------------ |
-| 0         | "0000.0 Grad"        | "0000.0 Grad/s"               | *aus*                     |                |                         |               |                 |                 |          |              |
-| 10        | "0200.0 Grad"        | "0020.0 Grad/s"               | D23, *State-Counter-LEDs* |                |                         |               |                 |                 |          |              |
-| 20        | "0360.0 Grad"        | "0000.0 Grad"                 | *State-Counter-LEDs*      |                |                         |               |                 |                 |          |              |
+| Zeit in s | Erwartungswert Angle | Erwartungswert Angle Velocity | Erwartungswert LEDs       | Ergebnis Angle | Ergebnis Angle Velocity | Ergebnis LEDs | Durchgeführt am | Softwareversion | Hardware           | Protokollant  |
+| --------- | -------------------- | ----------------------------- | ------------------------- | -------------- | ----------------------- | ------------- | --------------- | --------------- | ------------------ | ------------- |
+| 0         | "0000.0 Grad"        | "0000.0 Grad/s"               | *aus*                     | *passt*        | *passt*                 | *passt*       | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| 10        | "0200.0 Grad"        | "0020.0 Grad/s"               | D23, *State-Counter-LEDs* | *passt*        | *passt*                 | *passt*       | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| 20        | "0360.0 Grad"        | "0000.0 Grad"                 | *State-Counter-LEDs*      | *passt*        | *passt*                 | *passt*       | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+$\rightarrow$ Minus und Plus sind beim Pico vertauscht.
+
 
 **-360 Grad & 20 Grad/s**
 
-| Zeit in s | Erwartungswert Angle | Erwartungswert Angle Velocity | Erwartungswert LEDs       | Ergebnis Angle | Ergebnis Angle Velocity | Ergebnis LEDs | Durchgeführt am | Softwareversion | Hardware | Protokollant |
-| --------- | -------------------- | ----------------------------- | ------------------------- | -------------- | ----------------------- | ------------- | --------------- | --------------- | -------- | ------------ |
-| 0         | "0000.0 Grad"        | "0000.0 Grad/s"               | *aus*                     |                |                         |               |                 |                 |          |              |
-| 10        | "-0200.0 Grad"       | "-0020.0 Grad/s"              | D22, *State-Counter-LEDs* |                |                         |               |                 |                 |          |              |
-| 20        | "-0360.0 Grad"       | "0000.0 Grad"                 | *State-Counter-LEDs*      |                |                         |               |                 |                 |          |              |
+| Zeit in s | Erwartungswert Angle | Erwartungswert Angle Velocity | Erwartungswert LEDs       | Ergebnis Angle | Ergebnis Angle Velocity | Ergebnis LEDs | Durchgeführt am | Softwareversion | Hardware           | Protokollant  |
+| --------- | -------------------- | ----------------------------- | ------------------------- | -------------- | ----------------------- | ------------- | --------------- | --------------- | ------------------ | ------------- |
+| 0         | "0000.0 Grad"        | "0000.0 Grad/s"               | *aus*                     | *passt*        | *passt*                 | *passt*       | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| 10        | "-0200.0 Grad"       | "-0020.0 Grad/s"              | D22, *State-Counter-LEDs* | *passt*        | *passt*                 | *passt*       | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
+| 20        | "-0360.0 Grad"       | "0000.0 Grad"                 | *State-Counter-LEDs*      | *passt*        | *passt*                 | *passt*       | 26.11.2026      | Aufgabe_2.22    | ITS-Board von Cord | Cord und Timo |
